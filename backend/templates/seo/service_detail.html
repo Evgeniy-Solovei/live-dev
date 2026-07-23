@@ -25,12 +25,12 @@
 </div></section>
 
 <section class="seo-section" id="examples"><div class="seo-wrap">
-  <div class="seo-heading"><p class="section-kicker">Примеры работ</p><h2>Проекты по этому направлению</h2><p>Каждый пример открыт на отдельной странице с индексируемым описанием.</p></div>
+  <div class="seo-heading"><p class="section-kicker">Примеры работ</p><h2>Проекты по этому направлению</h2></div>
   <div class="seo-cases">
-    {% for item in items %}<a href="{% url 'portfolio_detail' item.seo_slug %}" class="seo-case">
+    {% for item in items %}<article class="seo-case">
       {% if item.resolved_image %}<img src="{{ item.resolved_image }}" alt="{{ item.title }}" width="1600" height="900" loading="lazy" />{% endif %}
       <div><span>{{ item.category.label }}</span><h3>{{ item.title }}</h3><p>{{ item.text|truncatechars:180 }}</p></div>
-    </a>{% empty %}<p>Примеры этого направления скоро появятся.</p>{% endfor %}
+    </article>{% empty %}<p>Примеры этого направления скоро появятся.</p>{% endfor %}
   </div>
 </div></section>
 

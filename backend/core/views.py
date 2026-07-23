@@ -51,29 +51,15 @@ def privacy(request):
 
 @require_GET
 def sitemap(request):
-    from content.models import ShowcaseItem
     from content.seo import SERVICE_ORDER
 
     urls = [
         ('https://live-dev.by/', None, '1.0'),
         ('https://live-dev.by/privacy/', None, '0.2'),
-        ('https://live-dev.by/uslugi/', None, '0.9'),
     ]
     urls.extend(
         (f'https://live-dev.by{reverse("service_detail", args=[slug])}', None, '0.9')
         for slug in SERVICE_ORDER
-    )
-    urls.extend(
-        (
-            f'https://live-dev.by{reverse("portfolio_detail", args=[item.seo_slug])}',
-            item.updated_at.date().isoformat() if item.updated_at else None,
-            '0.7',
-        )
-        for item in ShowcaseItem.objects.filter(
-            is_active=True,
-            category__is_active=True,
-            seo_slug__isnull=False,
-        ).only('seo_slug', 'updated_at')
     )
     entries = []
     for loc, lastmod, priority in urls:

@@ -1,25 +1,98 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="index,follow" />
+  <script>
+    try {
+      var theme = localStorage.getItem('livedev-theme') || 'dark';
+      if (!['dark', 'light', 'ocean'].includes(theme)) theme = 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {}
+  </script>
+  <meta name="robots" content="noindex,follow" />
+  <meta name="description" content="Политика обработки персональных данных на сайте LiveDev." />
   <link rel="canonical" href="https://live-dev.by/privacy/" />
-  <link rel="stylesheet" href="/assets/styles.css?v=20260723t" />
   <title>Политика конфиденциальности — LiveDev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" />
+  <style>
+    :root{--page-bg:#070b16;--text:#f4f6ff;--text-body:#b9c7ef;--line:rgba(255,255,255,.12);--surface:rgba(255,255,255,.05);--accent:#a8ff35;--logo-text:#fff;--logo-spark:#a8ff35}
+    [data-theme="light"]{--page-bg:#edf2fc;--text:#0a0f1e;--text-body:#3e4d70;--line:rgba(10,15,30,.14);--surface:rgba(255,255,255,.72);--accent:#3a7a00;--logo-text:#0a0f1e;--logo-spark:#4a9e00}
+    [data-theme="ocean"]{--page-bg:#061520;--text:#e8f8ff;--text-body:#a8d4e8;--line:#1e4a62;--surface:rgba(39,184,255,.05);--accent:#3dffe0;--logo-text:#e8f8ff;--logo-spark:#3dffe0}
+    *{box-sizing:border-box}
+    html{background:var(--page-bg)}
+    body{margin:0;background:var(--page-bg);color:var(--text);font-family:Manrope,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;transition:background .2s,color .2s}
+    .page{width:min(1120px,calc(100% - 48px));margin:0 auto;padding:24px 0 72px}
+    .header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+    .logo{display:block;width:250px;max-width:45vw;text-decoration:none}
+    .logo svg{display:block;width:100%;height:auto}
+    .back{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--text);text-decoration:none;font-size:14px;font-weight:800}
+    .back:hover{border-color:var(--accent)}
+    .document{padding-top:64px}
+    .eyebrow{margin:0 0 14px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    h1{margin:0 0 26px;max-width:none;font-size:clamp(42px,6vw,72px);line-height:1.04;letter-spacing:-.055em;color:var(--text);overflow-wrap:normal;word-break:normal}
+    .intro{max-width:900px;margin:0 0 56px;color:var(--text-body);font-size:19px;line-height:1.7}
+    .section{display:grid;grid-template-columns:270px minmax(0,1fr);gap:52px;padding:34px 0;border-top:1px solid var(--line)}
+    h2{margin:0;font-size:23px;line-height:1.3;letter-spacing:-.025em;color:var(--text)}
+    p,ul{margin:0;color:var(--text-body);font-size:16px;line-height:1.75}
+    ul{padding-left:20px}
+    li+li{margin-top:5px}
+    .contact-link{color:var(--accent);font-weight:800;text-decoration:none}
+    .contact-link:hover{text-decoration:underline}
+    .updated{padding-top:24px;border-top:1px solid var(--line);color:var(--text-body);font-size:13px}
+    @media(max-width:720px){.page{width:min(100% - 30px,1120px);padding-top:14px}.header{align-items:center}.logo{width:190px}.back{min-height:44px;padding:0 13px;font-size:13px}.document{padding-top:42px}h1{font-size:clamp(38px,11vw,56px);letter-spacing:-.045em;overflow-wrap:anywhere}.intro{margin-bottom:40px;font-size:17px}.section{grid-template-columns:1fr;gap:12px;padding:28px 0}}
+    @media(max-width:430px){.logo{width:155px}.back{font-size:0}.back:after{content:'← На главную';font-size:13px}}
+  </style>
 </head>
 <body>
-  <main class="section"><div class="container" style="max-width:900px">
-    <p><a href="/">← Вернуться на сайт</a></p>
-    <h1>Политика конфиденциальности</h1>
-    <p>LiveDev обрабатывает имя, контактные данные, текст обращения и технические данные посещения только для ответа на заявку, связи с клиентом, обеспечения работы сайта и анализа его эффективности.</p>
-    <h2>Какие данные обрабатываются</h2>
-    <p>Имя, телефон, email или Telegram, содержание заявки, IP-адрес, сведения о браузере, источнике перехода и действиях на сайте.</p>
-    <h2>Передача и хранение</h2>
-    <p>Данные не продаются третьим лицам. Для работы уведомлений и аналитики могут использоваться Telegram, Яндекс.Метрика и Google Analytics, если соответствующие сервисы включены администратором сайта.</p>
-    <h2>Обращения по персональным данным</h2>
-    <p>Чтобы уточнить, исправить или удалить свои данные, напишите на <a href="mailto:live-dev@mail.ru">live-dev@mail.ru</a>.</p>
-    <p>Дата обновления: 23 июля 2026 года.</p>
-  </div></main>
+  <main class="page">
+    <header class="header">
+      <a class="logo" href="/" aria-label="LiveDev — главная">
+        <svg viewBox="0 0 620 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LiveDev">
+          <defs>
+            <linearGradient id="privacyLogoMark" x1="20" y1="0" x2="120" y2="100" gradientUnits="userSpaceOnUse"><stop stop-color="#25D9FF"/><stop offset=".52" stop-color="#2C7BFF"/><stop offset="1" stop-color="#8A45FF"/></linearGradient>
+            <linearGradient id="privacyLogoPulse" x1="282" y1="60" x2="382" y2="60" gradientUnits="userSpaceOnUse"><stop stop-color="#25D9FF"/><stop offset=".48" stop-color="#2C7BFF"/><stop offset="1" stop-color="#8A45FF"/></linearGradient>
+            <filter id="privacyLogoGlow" x="-40%" y="-80%" width="180%" height="260%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <g filter="url(#privacyLogoGlow)"><path d="M38 22C23 36 16 50 16 60C16 70 23 84 38 98" stroke="url(#privacyLogoMark)" stroke-width="8" stroke-linecap="round" fill="none"/><path d="M112 22C127 36 134 50 134 60C134 70 127 84 112 98" stroke="url(#privacyLogoMark)" stroke-width="8" stroke-linecap="round" fill="none"/><circle cx="75" cy="60" r="12" fill="url(#privacyLogoMark)"/></g>
+          <text x="160" y="78" fill="var(--logo-text)" font-size="52" font-weight="800" letter-spacing="-2.6" font-family="Manrope,Arial,sans-serif">Live</text>
+          <path d="M282 60H313L323 44L334 80L346 60H382" stroke="url(#privacyLogoPulse)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#privacyLogoGlow)"/>
+          <circle r="5.5" fill="var(--logo-spark)"><animateMotion dur="2.4s" repeatCount="indefinite" path="M282 60H313L323 44L334 80L346 60H382"/></circle>
+          <text x="405" y="78" fill="var(--logo-text)" font-size="52" font-weight="800" letter-spacing="-2.6" font-family="Manrope,Arial,sans-serif">Dev</text>
+        </svg>
+      </a>
+      <a class="back" href="/">← Вернуться на главную</a>
+    </header>
+
+    <article class="document">
+      <p class="eyebrow">Документы LiveDev</p>
+      <h1>Политика конфиденциальности</h1>
+      <p class="intro">На этой странице указано, какие данные может получать сайт LiveDev, для чего они используются и как связаться с нами по вопросам их обработки.</p>
+
+      <section class="section">
+        <h2>Какие данные мы получаем</h2>
+        <ul><li>имя и контактные данные, указанные в заявке;</li><li>описание задачи и содержание обращения;</li><li>IP-адрес, сведения о браузере, источнике перехода и действиях на сайте.</li></ul>
+      </section>
+
+      <section class="section">
+        <h2>Для чего используются данные</h2>
+        <p>Для ответа на заявку, обсуждения проекта, подготовки предварительной оценки, обеспечения работы сайта и анализа эффективности рекламных источников.</p>
+      </section>
+
+      <section class="section">
+        <h2>Передача и хранение</h2>
+        <p>Мы не продаём персональные данные. Для уведомлений, связи и аналитики могут использоваться Telegram, Яндекс Метрика и Google Analytics, если эти интеграции включены на сайте. Доступ к заявкам ограничивается уполномоченными лицами.</p>
+      </section>
+
+      <section class="section">
+        <h2>Обращения по персональным данным</h2>
+        <p>Чтобы запросить сведения об обработке, уточнить или удалить свои данные, напишите на <a class="contact-link" href="mailto:live-dev@mail.ru">live-dev@mail.ru</a>.</p>
+      </section>
+
+      <p class="updated">Редакция от 23 июля 2026 года</p>
+    </article>
+  </main>
 </body>
 </html>

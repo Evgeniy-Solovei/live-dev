@@ -8,7 +8,6 @@ from content.views import (
     public_showcase,
     preview_showcase,
     item_live_preview,
-    portfolio_detail,
     service_index,
     service_detail,
 )
@@ -25,7 +24,6 @@ urlpatterns = [
     path('privacy/', privacy, name='privacy'),
     path('uslugi/', service_index, name='service_index'),
     path('uslugi/<slug:slug>/', service_detail, name='service_detail'),
-    path('portfolio/<slug:slug>/', portfolio_detail, name='portfolio_detail'),
     # Старый URL превью → редирект; живое превью также в admin get_urls
     path('admin/content/preview/', preview_showcase, name='showcase_preview'),
     path(

@@ -217,25 +217,42 @@ const showcaseTitle = document.getElementById('showcaseTitle');
 const showcaseText = document.getElementById('showcaseText');
 const showcasePoints = document.getElementById('showcasePoints');
 const showcaseCounter = document.getElementById('showcaseCounter');
-const showcaseDetailLink = document.getElementById('showcaseDetailLink');
 const showcaseContent = showcase?.querySelector('.showcase-content');
-let activeCategory = 'crm';
+let activeCategory = window.LIVEDEV_INITIAL_CATEGORY || 'crm';
 let activeExample = 0;
 let showcaseTimer = null;
 
 const bindProductTabs = () => {
   productTabs = document.querySelectorAll('[data-product-category]');
   productTabs.forEach((tab) => {
-    tab.onclick = () => {
+    tab.onclick = (event) => {
+      event.preventDefault();
       activeCategory = tab.dataset.productCategory;
       activeExample = 0;
       productTabs.forEach((item) => item.classList.toggle('is-active', item === tab));
+      if (window.location.pathname !== tab.getAttribute('href')) {
+        window.history.pushState({ productCategory: activeCategory }, '', tab.href);
+      }
       renderShowcase();
     };
   });
 };
 
-/** Rebuild tab buttons from CMS categories (order = API order). */
+const categoryServiceUrls = {
+  crm: '/uslugi/crm-sistemy/',
+  telegram: '/uslugi/telegram-mini-app/',
+  bots: '/uslugi/telegram-boty/',
+  landings: '/uslugi/landing-page/',
+  shop: '/uslugi/razrabotka-saitov/',
+  ai: '/uslugi/ai-avtomatizaciya/',
+  vpn: '/uslugi/podderzhka-proektov/',
+};
+
+const categoryByServicePath = Object.fromEntries(
+  Object.entries(categoryServiceUrls).map(([category, path]) => [path, category]),
+);
+
+/** Rebuild category links from CMS data (order = API order). */
 const syncProductTabs = () => {
   if (!productTabsRoot) return;
   const keys = Object.keys(productExamples);
@@ -243,19 +260,20 @@ const syncProductTabs = () => {
   const buttons = keys.map((slug, i) => {
     const label = productExamples[slug].label || slug;
     const active = slug === activeCategory || (!productExamples[activeCategory] && i === 0);
-    const button = document.createElement('button');
-    button.className = `product-tab${active ? ' is-active' : ''}`;
-    button.type = 'button';
-    button.dataset.productCategory = slug;
-    button.textContent = label;
-    return button;
+    const link = document.createElement('a');
+    link.className = `product-tab${active ? ' is-active' : ''}`;
+    link.href = categoryServiceUrls[slug] || '/uslugi/';
+    link.dataset.productCategory = slug;
+    link.textContent = label;
+    return link;
   });
   productTabsRoot.replaceChildren(...buttons);
   bindProductTabs();
 };
 
 const visualNode = (category, item) => {
-  const src = item?.image || category?.image;
+  let src = item?.image || category?.image;
+  if (src?.startsWith('assets/')) src = `/${src}`;
   if (src) {
     const bust = src.includes('?') ? src : `${src}?v=20260723t`;
     const img = document.createElement('img');
@@ -291,10 +309,6 @@ const renderShowcase = (instant = false) => {
       }));
     }
     if (showcaseCounter) showcaseCounter.textContent = `${activeExample + 1} / ${category.items.length}`;
-    if (showcaseDetailLink) {
-      showcaseDetailLink.hidden = !item.url;
-      if (item.url) showcaseDetailLink.href = item.url;
-    }
     showcase?.classList.remove('is-changing');
     showcaseTimer = null;
     // Только действия пользователя (стрелки / вкладки), не первый рендер и не подгрузка API
@@ -331,6 +345,9 @@ const getShowcaseLayoutMode = () => {
 
 let showcaseLayoutMode = getShowcaseLayoutMode();
 
+productTabs.forEach((item) => {
+  item.classList.toggle('is-active', item.dataset.productCategory === activeCategory);
+});
 renderShowcase(true);
 
 /* Фиксированная высота через CSS — без прогона всех слайдов */
@@ -363,6 +380,14 @@ const lockShowcaseHeight = () => {
 };
 
 bindProductTabs();
+window.addEventListener('popstate', () => {
+  const category = categoryByServicePath[window.location.pathname] || 'crm';
+  if (!productExamples[category]) return;
+  activeCategory = category;
+  activeExample = 0;
+  productTabs.forEach((item) => item.classList.toggle('is-active', item.dataset.productCategory === category));
+  renderShowcase(true);
+});
 document.querySelector('[data-example-prev]')?.addEventListener('click', () => {
   const list = productExamples[activeCategory].items;
   activeExample = (activeExample - 1 + list.length) % list.length;

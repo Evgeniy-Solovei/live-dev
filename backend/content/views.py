@@ -1,10 +1,11 @@
 import json
 import json as json_module
+from pathlib import Path
 
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import Http404, HttpResponse, JsonResponse, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views.decorators.http import require_GET, require_http_methods
@@ -37,7 +38,6 @@ def _showcase_payload():
                 'points': item.points or [],
                 'image': image,
                 'updated_at': item.updated_at.isoformat() if item.updated_at else '',
-                'url': reverse('portfolio_detail', args=[item.seo_slug]) if item.seo_slug else '',
             })
         if items:
             data[cat.slug] = {
@@ -80,19 +80,13 @@ def _seo_common():
 def service_detail(request, slug):
     service = SERVICES.get(slug)
     if not service:
-        from django.http import Http404
         raise Http404('Service not found')
 
-    items = (
-        ShowcaseItem.objects.filter(
-            is_active=True,
-            category__is_active=True,
-            category__slug__in=service['category_slugs'],
-        )
-        .select_related('category')
-        .order_by('category__sort_order', 'sort_order', 'id')[:12]
-    )
-    canonical = request.build_absolute_uri(reverse('service_detail', args=[slug]))
+    index = Path(settings.FRONTEND_DIR) / 'index.html'
+    if not index.is_file():
+        raise Http404('Frontend index.html not found')
+    canonical = f'https://live-dev.by{reverse("service_detail", args=[slug])}'
+    category = service['category_slugs'][0]
     schema = {
         '@context': 'https://schema.org',
         '@type': 'Service',
@@ -111,80 +105,30 @@ def service_detail(request, slug):
             'telephone': '+375298945462',
         },
     }
-    context = _seo_common() | {
-        'service': service,
-        'service_slug': slug,
-        'items': items,
-        'canonical': canonical,
-        'schema_json': _safe_schema(schema),
+    html = index.read_text(encoding='utf-8')
+    replacements = {
+        '<title>Разработка сайтов, CRM и Telegram в Витебске — LiveDev</title>': f'<title>{service["title"]}</title>',
+        '<meta name="description" content="Разрабатываем сайты, CRM, Telegram Mini Apps, ботов и AI-решения под ключ в Витебске и удалённо по Беларуси. Аналитика, интеграции и запуск." />': f'<meta name="description" content="{service["description"]}" />',
+        '<meta property="og:title" content="Разработка сайтов и программного обеспечения — LiveDev" />': f'<meta property="og:title" content="{service["title"]}" />',
+        '<meta property="og:description" content="Сайты, CRM, Telegram Mini Apps, боты и AI-автоматизация для бизнеса. Бесплатный разбор задачи за 20–30 минут." />': f'<meta property="og:description" content="{service["description"]}" />',
+        '<meta property="og:url" content="https://live-dev.by/" />': f'<meta property="og:url" content="{canonical}" />',
+        '<link rel="canonical" href="https://live-dev.by/" />': f'<link rel="canonical" href="{canonical}" />',
     }
-    return render(request, 'seo/service_detail.html', context)
+    for source, target in replacements.items():
+        html = html.replace(source, target, 1)
+    page_data = (
+        f'<script>window.LIVEDEV_INITIAL_CATEGORY={json_module.dumps(category)};</script>'
+        f'<script type="application/ld+json">{_safe_schema(schema)}</script>'
+    )
+    html = html.replace('</head>', f'{page_data}</head>', 1)
+    response = HttpResponse(html, content_type='text/html; charset=utf-8')
+    response['Cache-Control'] = 'public, max-age=300'
+    return response
 
 
 @require_GET
 def service_index(request):
-    canonical = request.build_absolute_uri(reverse('service_index'))
-    schema = {
-        '@context': 'https://schema.org',
-        '@type': 'ItemList',
-        'name': 'Услуги LiveDev',
-        'itemListElement': [
-            {
-                '@type': 'ListItem',
-                'position': position,
-                'name': SERVICES[slug]['h1'],
-                'url': request.build_absolute_uri(reverse('service_detail', args=[slug])),
-            }
-            for position, slug in enumerate(SERVICE_ORDER, 1)
-        ],
-    }
-    context = _seo_common() | {
-        'canonical': canonical,
-        'schema_json': _safe_schema(schema),
-        'service_cards': [(slug, SERVICES[slug]) for slug in SERVICE_ORDER],
-    }
-    return render(request, 'seo/service_index.html', context)
-
-
-@require_GET
-def portfolio_detail(request, slug):
-    item = get_object_or_404(
-        ShowcaseItem.objects.select_related('category'),
-        seo_slug=slug,
-        is_active=True,
-        category__is_active=True,
-    )
-    service_slug = CATEGORY_SERVICE.get(item.category.slug, 'razrabotka-saitov')
-    service = SERVICES[service_slug]
-    related = (
-        ShowcaseItem.objects.filter(category=item.category, is_active=True)
-        .exclude(pk=item.pk)
-        .order_by('sort_order', 'id')[:3]
-    )
-    canonical = request.build_absolute_uri(reverse('portfolio_detail', args=[item.seo_slug]))
-    description = f'{item.title}: {item.text}'[:300]
-    schema = {
-        '@context': 'https://schema.org',
-        '@type': 'CreativeWork',
-        'name': item.title,
-        'description': item.text,
-        'url': canonical,
-        'image': request.build_absolute_uri(item.resolved_image) if item.resolved_image else None,
-        'creator': {'@type': 'Organization', 'name': 'LiveDev', 'url': 'https://live-dev.by/'},
-        'keywords': ', '.join(str(point) for point in (item.points or [])),
-    }
-    context = _seo_common() | {
-        'item': item,
-        'service': service,
-        'service_slug': service_slug,
-        'related': related,
-        'canonical': canonical,
-        'meta_title': f'{item.title} — пример проекта LiveDev',
-        'meta_description': description,
-        'og_image': request.build_absolute_uri(item.resolved_image) if item.resolved_image else '',
-        'schema_json': _safe_schema(schema),
-    }
-    return render(request, 'seo/portfolio_detail.html', context)
+    return redirect('/', permanent=True)
 
 
 @staff_member_required

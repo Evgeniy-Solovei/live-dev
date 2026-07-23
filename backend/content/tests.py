@@ -34,23 +34,20 @@ class SeoPageTests(TestCase):
         )
 
     def test_all_service_pages_are_indexable(self):
-        self.assertEqual(self.client.get('/uslugi/').status_code, 200)
+        self.assertEqual(self.client.get('/uslugi/').status_code, 301)
         for slug in SERVICE_ORDER:
             response = self.client.get(f'/uslugi/{slug}/')
             self.assertEqual(response.status_code, 200, slug)
-            self.assertContains(response, '<meta name="robots" content="index,follow', html=False)
+            self.assertContains(response, '<main id="top">', html=False)
             self.assertContains(response, 'Витебск')
             self.assertContains(response, 'application/ld+json')
+            self.assertContains(response, 'window.LIVEDEV_INITIAL_CATEGORY=', html=False)
 
-    def test_portfolio_page(self):
-        response = self.client.get(f'/portfolio/{self.item.seo_slug}/')
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, self.item.title)
-        self.assertContains(response, self.item.text)
-        self.assertContains(response, 'rel="canonical"')
+    def test_portfolio_pages_are_not_public(self):
+        self.assertEqual(self.client.get(f'/portfolio/{self.item.seo_slug}/').status_code, 404)
 
-    def test_sitemap_contains_services_and_portfolio(self):
+    def test_sitemap_contains_services_without_portfolio_pages(self):
         response = self.client.get('/sitemap.xml')
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, '/uslugi/razrabotka-saitov/')
-        self.assertContains(response, f'/portfolio/{self.item.seo_slug}/')
+        self.assertNotContains(response, '/portfolio/')

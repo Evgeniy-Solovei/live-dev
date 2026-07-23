@@ -77,10 +77,10 @@ class ShowcaseItemAdmin(ModelAdmin):
     search_fields = ('title', 'seo_slug', 'text')
     list_select_related = ('category',)
     autocomplete_fields = ('category',)
-    readonly_fields = ('card_preview', 'live_link_help', 'public_page_link')
+    readonly_fields = ('card_preview', 'live_link_help')
     fieldsets = (
         ('Как будет на сайте', {
-            'fields': ('card_preview', 'live_link_help', 'public_page_link'),
+            'fields': ('card_preview', 'live_link_help'),
             'description': 'Превью = фото + заголовок + описание + теги. '
                            'Обновляется, пока печатаешь поля ниже — видно, как длинный текст влияет на карточку.',
         }),
@@ -136,13 +136,6 @@ class ShowcaseItemAdmin(ModelAdmin):
             'Открыть на весь экран (удобнее править текст)</a>',
             url,
         )
-
-    @display(description='SEO-страница проекта')
-    def public_page_link(self, obj):
-        if not obj or not obj.pk or not obj.seo_slug:
-            return 'Появится после сохранения карточки.'
-        url = reverse('portfolio_detail', args=[obj.seo_slug])
-        return format_html('<a href="{}" target="_blank" rel="noopener">Открыть публичную страницу</a>', url)
 
     @display(description='Превью карточки')
     def card_preview(self, obj):
