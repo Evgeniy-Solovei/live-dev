@@ -8,7 +8,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.http import Http404, HttpResponse, JsonResponse, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from django.views.decorators.http import require_GET, require_http_methods
+from django.views.decorators.http import require_GET, require_http_methods, require_safe
 
 from content.models import ShowcaseCategory, ShowcaseItem
 from content.seo import SERVICES, SERVICE_ORDER
@@ -47,7 +47,7 @@ def _showcase_payload():
     return data
 
 
-@require_GET
+@require_safe
 def public_showcase(request):
     response = JsonResponse(_showcase_payload())
     response['Cache-Control'] = 'public, max-age=60, stale-while-revalidate=300'
@@ -76,7 +76,7 @@ def _seo_common():
     }
 
 
-@require_GET
+@require_safe
 def service_detail(request, slug):
     service = SERVICES.get(slug)
     if not service:
@@ -127,7 +127,7 @@ def service_detail(request, slug):
     return response
 
 
-@require_GET
+@require_safe
 def service_index(request):
     return redirect('/', permanent=True)
 

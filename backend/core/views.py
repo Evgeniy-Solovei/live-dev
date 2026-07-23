@@ -6,14 +6,14 @@ from django.http import FileResponse, Http404, JsonResponse, HttpResponse, HttpR
 from django.urls import reverse
 from django.utils.html import escape
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.http import require_GET, require_POST, require_safe
 
 from core.models import SiteSettings
 from core.utils import cached_json, client_ip, lookup_geo, inject_yandex_metrika
 from django.conf import settings as django_settings
 
 
-@require_GET
+@require_safe
 def home(request):
     """Serve the marketing site from FRONTEND_DIR (single Django app entry)."""
     index = Path(settings.FRONTEND_DIR) / 'index.html'
@@ -23,7 +23,7 @@ def home(request):
     return HttpResponse(html, content_type='text/html; charset=utf-8')
 
 
-@require_GET
+@require_safe
 def frontend_root_file(request, name: str):
     """Serve root frontend files like sw.js / build.json."""
     allowed = {'sw.js', 'build.json', 'robots.txt', 'sitemap.xml'}
@@ -42,7 +42,7 @@ def frontend_root_file(request, name: str):
     return FileResponse(path.open('rb'), content_type=content_type)
 
 
-@require_GET
+@require_safe
 def privacy(request):
     path = Path(settings.FRONTEND_DIR) / 'privacy.html'
     if not path.is_file():
@@ -51,7 +51,7 @@ def privacy(request):
     return HttpResponse(html, content_type='text/html; charset=utf-8')
 
 
-@require_GET
+@require_safe
 def sitemap(request):
     from content.seo import SERVICE_ORDER
 
@@ -97,7 +97,7 @@ def _public_settings_payload():
     }
 
 
-@require_GET
+@require_safe
 def public_settings(request):
     response = JsonResponse(_public_settings_payload())
     response['Cache-Control'] = 'public, max-age=60, stale-while-revalidate=300'
