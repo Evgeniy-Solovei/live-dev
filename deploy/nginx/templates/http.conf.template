@@ -1,15 +1,18 @@
 limit_req_zone $binary_remote_addr zone=leads:10m rate=5r/m;
 limit_req_zone $binary_remote_addr zone=analytics:10m rate=30r/m;
 
+# Preserve HTTPS information received from the public reverse proxy. For a
+# direct HTTP request fall back to the protocol of this connection.
+map $http_x_forwarded_proto $upstream_forwarded_proto {
+    default $http_x_forwarded_proto;
+    ""      $scheme;
+}
+
 server {
     listen 80;
     listen [::]:80;
     server_name ${DOMAIN};
     client_max_body_size 4m;
-
-    location /.well-known/acme-challenge/ {
-        root /var/www/certbot;
-    }
 
     include /etc/nginx/templates-live/common-locations.conf;
 }
