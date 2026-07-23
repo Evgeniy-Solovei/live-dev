@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070b16;
+      --card: rgba(255,255,255,.045);
+      --line: rgba(255,255,255,.1);
+      --text: #f3f6ff;
+      --muted: #9aa8c7;
+      --lime: #a8ff35;
+      --accent: #2c7bff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Manrope, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+      padding: 14px 20px; border-bottom: 1px solid var(--line);
+      position: sticky; top: 0; background: rgba(7,11,22,.92); backdrop-filter: blur(8px); z-index: 5;
+    }
+    header a { color: var(--accent); text-decoration: none; font-size: 14px; }
+    header .hint { color: var(--muted); font-size: 13px; }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, .7fr);
+      gap: 20px;
+      padding: 20px;
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+    .stage {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 22px;
+      background: radial-gradient(circle at 12% 0%, rgba(168,255,53,.08), transparent 30%),
+                  radial-gradient(circle at 92% 18%, rgba(124,92,255,.16), transparent 34%),
+                  var(--card);
+      display: grid;
+      grid-template-columns: 1.45fr .75fr;
+      gap: 18px;
+      align-items: stretch;
+      height: auto;
+      min-height: 520px;
+      max-height: none;
+    }
+    .visual {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: #070b14;
+      align-self: center;
+    }
+    .visual img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .copy {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+    }
+    .kicker {
+      color: var(--lime); font-family: "JetBrains Mono", monospace;
+      font-size: 12px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+    #pv-title {
+      font-size: clamp(26px, 2.8vw, 42px); line-height: 1.05; letter-spacing: -.04em;
+      font-weight: 800; margin: 0 0 12px;
+      overflow: visible; word-break: normal; overflow-wrap: normal; hyphens: none;
+      flex-shrink: 0;
+    }
+    #pv-text {
+      color: #c5d0ff; font-size: 16px; line-height: 1.55; margin: 0;
+      overflow: visible; word-break: normal; overflow-wrap: normal; hyphens: none;
+      flex-shrink: 0;
+    }
+    #pv-points {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin: 18px 0; flex-shrink: 0;
+    }
+    #pv-points span {
+      padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,.06);
+      border: 1px solid var(--line); font-size: 13px; font-weight: 700;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      max-width: 100%; word-break: normal; overflow-wrap: normal;
+    }
+    .bottom {
+      margin-top: auto;
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 16px; border-top: 1px solid var(--line);
+      color: #aebbea; font-family: "JetBrains Mono", monospace; font-size: 13px;
+      flex-shrink: 0;
+    }
+    .chars {
+      margin-top: 8px; font-size: 12px; color: var(--muted);
+    }
+    .chars.warn { color: #ffb020; }
+    .chars.bad { color: #ff7a7a; }
+    .editor {
+      border: 1px solid var(--line); border-radius: 20px; padding: 18px;
+      background: #0f1528; display: grid; gap: 12px; align-content: start;
+      position: sticky; top: 72px; max-height: calc(100vh - 96px); overflow: auto;
+    }
+    .editor h2 { margin: 0 0 4px; font-size: 18px; }
+    .editor .sub { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
+    .editor label { display: grid; gap: 6px; font-size: 13px; color: var(--muted); }
+    .editor input, .editor textarea {
+      width: 100%; background: #0a1020; border: 1px solid var(--line); color: var(--text);
+      border-radius: 10px; padding: 10px 12px; font: inherit;
+    }
+    .editor textarea { min-height: 120px; resize: vertical; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+    .actions button, .actions a.btn {
+      border: 0; border-radius: 10px; padding: 11px 14px; cursor: pointer;
+      font-weight: 700; text-decoration: none; display: inline-block;
+    }
+    .actions button { background: var(--lime); color: #06101c; }
+    .actions button.secondary { background: rgba(255,255,255,.08); color: var(--text); }
+    .actions a.btn { background: transparent; border: 1px solid var(--line); color: var(--text); }
+    #status { font-size: 13px; color: var(--muted); min-height: 1.2em; }
+    #status.ok { color: #3dd68c; }
+    #status.err { color: #ff7a7a; }
+    @media (max-width: 980px) {
+      .layout, .stage { grid-template-columns: 1fr; height: auto; max-height: none; }
+      .editor { position: static; max-height: none; }
+      #pv-points { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <strong>Живое превью: фото + текст</strong>
+      <div class="hint">Слева — как на сайте. Справа правишь текст — превью меняется сразу (видно длину описания).</div>
+    </div>
+    <div>
+      <a href="{{ edit_url }}">Форма в админке</a>
+      · <a href="/admin/content/showcaseitem/">Все карточки</a>
+      · <a href="/#cases" target="_blank" rel="noopener">Сайт</a>
+    </div>
+  </header>
+
+  <div class="layout">
+    <div>
+      <div class="stage" aria-label="Превью как на сайте">
+        <div class="visual">
+          {% if image_url %}
+          <img src="{{ image_url }}" alt="{{ item.title }}" id="pv-image">
+          {% else %}
+          <div style="display:grid;place-items:center;height:100%;color:var(--muted)">Нет картинки</div>
+          {% endif %}
+        </div>
+        <div class="copy">
+          <div class="kicker" id="pv-cat">{{ item.category.label }}</div>
+          <h1 id="pv-title">{{ item.title }}</h1>
+          <p id="pv-text">{{ item.text }}</p>
+          <div id="pv-points">
+            {% for p in item.points|slice:":3" %}
+            <span>{{ p }}</span>
+            {% endfor %}
+          </div>
+          <div class="bottom">
+            <span>1 / …</span>
+            <span>← →</span>
+          </div>
+        </div>
+      </div>
+      <div class="chars" id="charStats"></div>
+    </div>
+
+    <form class="editor" id="editForm" method="post">
+      {% csrf_token %}
+      <h2>Текст карточки</h2>
+      <p class="sub">Печатай — слева сразу видно заголовок, описание и теги вместе с фото. Длинный текст сдвигает блок вниз — длину контролируй сам, без обрезки «…».</p>
+      <label>Заголовок
+        <input type="text" name="title" id="f-title" value="{{ item.title }}" maxlength="200" required>
+      </label>
+      <label>Описание
+        <textarea name="text" id="f-text" rows="6">{{ item.text }}</textarea>
+      </label>
+      <label>Теги (по одному на строку, макс. 3)
+        <textarea name="points" id="f-points" rows="4" placeholder="тег1&#10;тег2&#10;тег3">{{ points_text }}</textarea>
+      </label>
+      <div class="actions">
+        <button type="submit">Сохранить в БД</button>
+        <button type="button" class="secondary" id="btnReset">Сбросить</button>
+        <a class="btn" href="{{ edit_url }}">Картинка / раздел</a>
+      </div>
+      <div id="status"></div>
+    </form>
+  </div>
+
+  <script>
+    const statusEl = document.getElementById('status');
+    const titleIn = document.getElementById('f-title');
+    const textIn = document.getElementById('f-text');
+    const pointsIn = document.getElementById('f-points');
+    const pvTitle = document.getElementById('pv-title');
+    const pvText = document.getElementById('pv-text');
+    const pvPoints = document.getElementById('pv-points');
+    const charStats = document.getElementById('charStats');
+
+    const saved = {
+      title: titleIn.value,
+      text: textIn.value,
+      points: pointsIn.value,
+    };
+
+    const parsePoints = () => pointsIn.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean).slice(0, 3);
+
+    const paint = () => {
+      pvTitle.textContent = titleIn.value || '—';
+      pvText.textContent = textIn.value || '';
+      pvPoints.replaceChildren();
+      parsePoints().forEach((p) => {
+        const span = document.createElement('span');
+        span.textContent = p;
+        pvPoints.appendChild(span);
+      });
+      const tLen = titleIn.value.length;
+      const dLen = textIn.value.length;
+      charStats.textContent = `Заголовок: ${tLen} симв. · Описание: ${dLen} симв. · Тегов: ${parsePoints().length}`;
+      charStats.className = 'chars' + (dLen > 160 ? ' bad' : dLen > 110 ? ' warn' : '');
+    };
+
+    [titleIn, textIn, pointsIn].forEach(el => el.addEventListener('input', paint));
+    paint();
+
+    document.getElementById('btnReset').onclick = () => {
+      titleIn.value = saved.title;
+      textIn.value = saved.text;
+      pointsIn.value = saved.points;
+      paint();
+      statusEl.textContent = 'Сброшено к последнему сохранённому';
+      statusEl.className = '';
+    };
+
+    document.getElementById('editForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = 'Сохраняю…';
+      statusEl.className = '';
+      try {
+        const res = await fetch(location.href, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+          body: JSON.stringify({
+            title: titleIn.value,
+            text: textIn.value,
+            points: parsePoints(),
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.ok) throw new Error(data.error || 'fail');
+        saved.title = titleIn.value;
+        saved.text = textIn.value;
+        saved.points = pointsIn.value;
+        statusEl.textContent = 'Сохранено. На сайте подтянется из API.';
+        statusEl.className = 'ok';
+      } catch (err) {
+        statusEl.textContent = 'Ошибка сохранения';
+        statusEl.className = 'err';
+      }
+    });
+  </script>
+</body>
+</html>

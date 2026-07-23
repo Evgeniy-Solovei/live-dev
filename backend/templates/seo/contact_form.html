@@ -1,0 +1,11 @@
+<section class="seo-section" id="contact"><div class="seo-wrap seo-contact">
+  <div><p class="section-kicker">Обсудить проект</p><h2>Получите предварительную оценку</h2><p>Опишите задачу — уточним требования, предложим формат запуска и ответим в течение рабочего дня.</p><p><a href="mailto:{{ site_settings.contact_email }}">{{ site_settings.contact_email }}</a> · <a href="https://t.me/{{ site_settings.contact_telegram|cut:'@' }}">{{ site_settings.contact_telegram }}</a></p></div>
+  <form class="lead-form" id="leadForm">
+    <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" class="form-honeypot" />
+    <label>Имя<input type="text" name="name" required autocomplete="name" /></label>
+    <label>Телефон, email или Telegram<input type="text" name="contact" required autocomplete="tel" /></label>
+    <label>О задаче<textarea name="message"></textarea></label>
+    <label class="form-consent"><input type="checkbox" required /><span>Согласен на обработку данных согласно <a href="/privacy/" target="_blank">политике конфиденциальности</a>.</span></label>
+    <button type="submit" class="btn btn-secondary">Получить оценку</button>
+  </form>
+</div></section>

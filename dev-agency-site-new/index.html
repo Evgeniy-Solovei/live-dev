@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    try {
+      var t = localStorage.getItem('livedev-theme') || 'dark';
+      if (t !== 'dark' && t !== 'light' && t !== 'ocean') t = 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Разработка сайтов, CRM и Telegram в Витебске — LiveDev</title>
+  <meta name="description" content="Разрабатываем сайты, CRM, Telegram Mini Apps, ботов и AI-решения под ключ в Витебске и удалённо по Беларуси. Аналитика, интеграции и запуск." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="LiveDev" />
+  <meta property="og:title" content="Разработка сайтов и программного обеспечения — LiveDev" />
+  <meta property="og:description" content="Сайты, CRM, Telegram Mini Apps, боты и AI-автоматизация для бизнеса. Бесплатный разбор задачи за 20–30 минут." />
+  <meta property="og:url" content="https://live-dev.by/" />
+  <meta property="og:image" content="https://live-dev.by/assets/showcase/crm-1.webp" />
+  <link rel="canonical" href="https://live-dev.by/" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "LiveDev",
+    "url": "https://live-dev.by/",
+    "email": "live-dev@mail.ru",
+    "telephone": "+375298945462",
+    "description": "Разработка сайтов, CRM, Telegram Mini Apps, ботов и AI-решений.",
+    "areaServed": [
+      {"@type": "City", "name": "Витебск"},
+      {"@type": "Country", "name": "Беларусь"}
+    ],
+    "sameAs": ["https://t.me/solovey_ev"]
+  }
+  </script>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LiveDev — разработка цифровых продуктов под ключ" />
+  <meta name="twitter:description" content="Сайты, CRM, Telegram, боты и AI для роста и автоматизации бизнеса." />
+  <meta name="twitter:image" content="https://live-dev.by/assets/showcase/crm-1.webp" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070b16'/%3E%3Ccircle cx='22' cy='32' r='7' fill='%2327d9ff'/%3E%3Cpath d='M8 18c-8 8-8 20 0 28M56 18c8 8 8 20 0 28M31 32h7l4-9 5 18 4-9h6' fill='none' stroke='%23a8ff35' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260723t" />
+  <link rel="stylesheet" href="assets/site-layout.css?v=20260723t" />
+  <link rel="stylesheet" href="assets/themes/theme-dark.css?v=20260723t" />
+  <link rel="stylesheet" href="assets/themes/theme-light.css?v=20260723t" />
+  <link rel="stylesheet" href="assets/themes/theme-ocean.css?v=20260723t" />
+  <link rel="stylesheet" href="assets/themes/theme-backgrounds.css?v=20260723t" />
+  <link rel="stylesheet" href="assets/themes/theme-overrides.css?v=20260723t" />
+  <link rel="stylesheet" href="assets/themes/theme-switcher.css?v=20260723t" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=optional" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=optional" /></noscript>
+</head>
+<body>
+  <div class="theme-backdrop" id="themeBackdrop" aria-hidden="true">
+    <div class="theme-backdrop__mesh"></div>
+    <div class="theme-backdrop__scene"></div>
+    <div class="theme-backdrop__pattern"></div>
+    <div class="theme-backdrop__fx"></div>
+  </div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="noise"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <header class="site-header">
+    <a href="#top" class="brand" aria-label="На главную">
+          <span class="ld-logo-animated" aria-label="LiveDev">
+            <svg viewBox="0 0 620 120" xmlns="http://www.w3.org/2000/svg" role="img">
+              <defs>
+                <linearGradient id="ldmA" x1="20" y1="0" x2="120" y2="100" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#25D9FF"/>
+                  <stop offset=".52" stop-color="#2C7BFF"/>
+                  <stop offset="1" stop-color="#8A45FF"/>
+                </linearGradient>
+                <linearGradient id="ldpA" x1="282" y1="60" x2="382" y2="60" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#25D9FF"/>
+                  <stop offset=".48" stop-color="#2C7BFF"/>
+                  <stop offset="1" stop-color="#8A45FF"/>
+                </linearGradient>
+                <filter id="ldGlowA" x="-40%" y="-80%" width="180%" height="260%">
+                  <feGaussianBlur stdDeviation="3" result="b"/>
+                  <feMerge>
+                    <feMergeNode in="b"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+                <filter id="ldSparkGlow" x="-200%" y="-200%" width="500%" height="500%">
+                  <feGaussianBlur stdDeviation="5" result="b"/>
+                  <feMerge>
+                    <feMergeNode in="b"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <g filter="url(#ldGlowA)">
+                <path d="M38 22C23 36 16 50 16 60C16 70 23 84 38 98" stroke="url(#ldmA)" stroke-width="8" stroke-linecap="round" fill="none"/>
+                <path d="M112 22C127 36 134 50 134 60C134 70 127 84 112 98" stroke="url(#ldmA)" stroke-width="8" stroke-linecap="round" fill="none"/>
+                <circle cx="75" cy="60" r="12" fill="url(#ldmA)"/>
+              </g>
+
+              <text x="160" y="78" fill="#fff" font-size="52" font-weight="800" letter-spacing="-2.6" font-family="Manrope, Arial, Helvetica, sans-serif">Live</text>
+
+              <!-- full static pulse line: never disappears -->
+              <path class="ld-pulse-base" d="M282 60H313L323 44L334 80L346 60H382" stroke="url(#ldpA)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#ldGlowA)"/>
+
+              <!-- animated light running along the full pulse line -->
+              <circle class="ld-pulse-spark" r="5.5" fill="#A8FF35" filter="url(#ldSparkGlow)">
+                <animateMotion dur="2.4s" repeatCount="indefinite" path="M282 60H313L323 44L334 80L346 60H382" keyTimes="0;1" keySplines=".22 .8 .22 1" calcMode="spline"/>
+              </circle>
+
+              <!-- small moving highlight line, over full base line -->
+              <path class="ld-pulse-runner" d="M282 60H313L323 44L334 80L346 60H382" stroke="#A8FF35" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+              <text x="405" y="78" fill="#fff" font-size="52" font-weight="800" letter-spacing="-2.6" font-family="Manrope, Arial, Helvetica, sans-serif">Dev</text>
+            </svg>
+          </span>
+        </a>
+    <div class="header-end">
+      <nav class="nav" id="siteNav">
+        <a href="/uslugi/">Услуги</a>
+        <a href="#cases">Проекты</a>
+        <a href="#models">Форматы</a>
+        <a href="#team">Команда</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <div class="header-actions">
+        <a href="#contact" class="header-cta">Получить оценку проекта</a>
+      </div>
+    </div>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="siteNav"><span></span><span></span></button>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="hero-bg-orb orb-1"></div>
+      <div class="hero-bg-orb orb-2"></div>
+      <div class="container hero-grid hero-grid-selling">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> LiveDev · Витебск, Беларусь · работаем удалённо</div>
+          <h1 class="hero-title">Сайты, CRM, Telegram и&nbsp;AI<br>для роста и автоматизации бизнеса</h1>
+          <p class="hero-lead">Создаём лендинги, сайты, CRM, личные кабинеты, Telegram Mini Apps, ботов и AI-агентов. Автоматизируем процессы, подключаем интеграции и помогаем с продвижением.</p>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Получить оценку проекта</a>
+            <a href="#cases" class="btn btn-ghost">Посмотреть примеры</a>
+          </div>
+
+          <div class="hero-proof hero-proof-selling" aria-label="Что получает бизнес">
+            <div><strong>Заявки и продажи</strong><span>выстраиваем путь клиента от первого касания до сделки</span></div>
+            <div><strong>Автоматизация процессов</strong><span>связываем заявки, CRM, уведомления и работу команды в одну систему</span></div>
+            <div><strong>Запуск под ключ</strong><span>доводим проект до релиза и помогаем развивать его дальше</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Предварительная оценка проекта LiveDev">
+          <div class="product-map main-card hero-estimate-card">
+            <div class="estimate-glow-ring"></div>
+            <div class="estimate-scan-line"></div>
+            <div class="card-topline">
+              <span class="dot green"></span><span class="dot yellow"></span><span class="dot red"></span>
+              <span class="mono">оценка проекта</span>
+            </div>
+
+            <div class="estimate-head">
+              <p class="estimate-kicker">Старт проекта</p>
+              <h3>Расскажите задачу — мы подскажем решение</h3>
+              <p>Поймём цель, формат продукта и нужные функции. После этого дадим понятную оценку по срокам и стоимости.</p>
+            </div>
+
+            <div class="estimate-panel">
+              <div class="estimate-row">
+                <span>Формат</span>
+                <b>лендинг / CRM / Telegram / AI</b>
+              </div>
+              <div class="estimate-row">
+                <span>Задача</span>
+                <b>заявки / продажи / автоматизация</b>
+              </div>
+              <div class="estimate-row">
+                <span>Подключения</span>
+                <b>оплаты / CRM / API / аналитика</b>
+              </div>
+            </div>
+
+            <div class="estimate-result">
+              <div>
+                <span>Результат</span>
+                <strong>понятный план старта</strong>
+              </div>
+              <a href="#contact">Получить оценку</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip hero-trust-strip" aria-label="Гарантии LiveDev">
+      <div class="container hero-trust-grid">
+        <span>Ответ в Telegram в течение рабочего дня</span>
+        <span>Бесплатный разбор задачи 20–30 мин</span>
+      </div>
+    </section>
+
+    <section class="section problem-section">
+      <div class="container problem-grid">
+        <div class="section-heading reveal">
+          <p class="section-kicker">Почему с нами проще</p>
+          <h2>Не просто делаем сайт, а собираем систему, которая помогает получать заявки и не терять клиентов</h2>
+          <p>Часто сайт уже есть, но заявки теряются, менеджеры ведут всё в таблицах, а сервисы не связаны между собой. Мы разбираем путь клиента, автоматизируем бизнес-процессы и проектируем решение под реальную работу команды.</p>
+        </div>
+
+        <div class="problem-cards">
+          <article class="problem-card risk-card reveal">
+            <span>01</span>
+            <h3>Без лишнего</h3>
+            <p>Не навязываем лишние страницы и функции. Оставляем только то, что реально влияет на заявки, продажи и удобство работы.</p>
+          </article>
+
+          <article class="problem-card solution reveal">
+            <span>02</span>
+            <h3>Собираем под задачу</h3>
+            <p>Лендинг, CRM, Telegram, AI-агент или интеграции — подбираем решение под процесс бизнеса, а не под красивую картинку.</p>
+          </article>
+
+          <article class="problem-card value-card reveal">
+            <span>03</span>
+            <h3>Даём честную оценку</h3>
+            <p>Показываем, что можно сделать быстрее и дешевле, а что лучше не урезать, чтобы проект не развалился после запуска.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+<section class="section dark-panel" id="cases">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-kicker">Примеры продуктов</p>
+          <h2>Показываем не технологии, а готовые решения для бизнеса.</h2>
+        </div>
+
+        <div class="product-tabs reveal" aria-label="Направления продуктов">
+          <button class="product-tab is-active" type="button" data-product-category="crm">CRM и кабинеты</button>
+          <button class="product-tab" type="button" data-product-category="telegram">Telegram Mini App</button>
+          <button class="product-tab" type="button" data-product-category="bots">Боты</button>
+          <button class="product-tab" type="button" data-product-category="landings">Лендинги</button>
+          <button class="product-tab" type="button" data-product-category="shop">Сайты и приложения</button>
+          <button class="product-tab" type="button" data-product-category="ai">AI-автоматизация</button>
+          <button class="product-tab" type="button" data-product-category="vpn">VPN и инфраструктура</button>
+        </div>
+
+        <div class="product-showcase reveal" id="productShowcase">
+          <div class="showcase-visual" id="showcaseVisual" aria-hidden="true"></div>
+          <div class="showcase-content">
+            <p class="showcase-category" id="showcaseCategory">CRM и личные кабинеты</p>
+            <h3 id="showcaseTitle">CRM для отдела продаж</h3>
+            <p id="showcaseText">Система помогает вести заявки, сделки, клиентов, задачи менеджеров и статусы работы без таблиц и хаоса в чатах.</p>
+            <div class="client-points" id="showcasePoints"></div>
+            <div class="showcase-bottom">
+              <div class="showcase-counter" id="showcaseCounter">1 / 4</div>
+              <div class="showcase-arrows">
+                <button type="button" aria-label="Предыдущий пример" data-example-prev>←</button>
+                <button type="button" aria-label="Следующий пример" data-example-next>→</button>
+              </div>
+            </div>
+            <a class="showcase-detail-link" id="showcaseDetailLink" href="#" hidden>Подробнее о проекте →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section models-section" id="models">
+      <div class="container">
+        <div class="section-heading reveal horizontal">
+          <div>
+            <p class="section-kicker">Форматы работы</p>
+            <h2>Можно начать с маленькой задачи или сразу собрать продукт под ключ.</h2>
+          </div>
+          
+        </div>
+        <div class="models-grid">
+          <article class="model-card reveal">
+            <span class="model-number">01</span>
+            <h3>MVP за короткий цикл</h3>
+            <p>Быстрый запуск первой версии: лендинг, Mini App, бот, кабинет или CRM-модуль.</p>
+            <b>Подходит для проверки идеи</b>
+          </article>
+          <article class="model-card reveal active">
+            <span class="model-number">02</span>
+            <h3>Разработка под ключ</h3>
+            <p>Дизайн, backend, frontend, DevOps, аналитика, интеграции и запуск на сервере.</p>
+            <b>Подходит для продукта под ключ</b>
+          </article>
+          <article class="model-card reveal">
+            <span class="model-number">03</span>
+            <h3>Усиление команды</h3>
+            <p>Подключаемся к вашему проекту на backend, frontend, DevOps или дизайн-задачи.</p>
+            <b>Подходит для текущей разработки</b>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section team-section wide-heading-full" id="team">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-kicker">Команда</p>
+          <h2>Под проект подключаем не только разработчиков, а людей, которые помогают довести задачу до результата.</h2>
+          
+        </div>
+        <div class="team-grid expanded-team">
+          <article class="team-card reveal"><div class="avatar">PM</div><h3>Менеджер проекта</h3><p>Собирает требования, держит план, сроки, приоритеты и коммуникацию с заказчиком.</p><span>Roadmap · Backlog · Jira/YouTrack · Delivery</span></article>
+          <article class="team-card reveal"><div class="avatar">BA</div><h3>IT-аналитик</h3><p>Разбирает бизнес-процессы, роли пользователей, сценарии, статусы, интеграции и ограничения.</p><span>ТЗ · BPMN · User Stories</span></article>
+          <article class="team-card reveal"><div class="avatar">UX</div><h3>UI/UX-дизайнер</h3><p>Проектирует структуру, прототипы, интерфейс, адаптивы и визуальную систему продукта.</p><span>Figma · UX · Design System</span></article>
+          <article class="team-card reveal"><div class="avatar">BE</div><h3>Backend-разработчик</h3><p>Архитектура API, бизнес-логика, базы данных, интеграции, админки и безопасность.</p><span>Python · Django · DRF · FastAPI · Celery · PostgreSQL · Redis</span></article>
+          <article class="team-card reveal"><div class="avatar">FE</div><h3>Frontend-разработчик</h3><p>Интерфейсы, адаптив, анимации, интеграция с API, личные кабинеты и веб-приложения.</p><span>React · Next.js · Vue · TypeScript · Tailwind · Motion</span></article>
+          <article class="team-card reveal"><div class="avatar">MB</div><h3>Мобильный разработчик</h3><p>Мобильные приложения под Android и iOS, push-уведомления, авторизация, API-интеграции и публикация.</p><span>Kotlin · Swift · Flutter · React Native · Firebase</span></article>
+          <article class="team-card reveal"><div class="avatar">QA</div><h3>QA-инженер</h3><p>Проверяет сценарии, формы, роли, ошибки, адаптивы, интеграции и готовность к запуску.</p><span>Test Cases · Regression · Postman · Swagger · Bug Reports</span></article>
+          <article class="team-card reveal"><div class="avatar">DO</div><h3>DevOps-инженер</h3><p>Docker, CI/CD, серверы, SSL, мониторинг, резервные копии, VPN-инфраструктура и стабильный деплой.</p><span>Docker · Nginx · Linux · GitLab CI/CD · WireGuard · VPN · Monitoring</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="faq">
+      <div class="container faq-layout">
+        <div class="section-heading reveal">
+          <p class="section-kicker">FAQ</p>
+          <h2>Ответы на главные вопросы перед стартом проекта</h2>
+          <p>Коротко о стоимости, формате работы и поддержке. Ниже — как идёт проект по шагам и ответы на частые вопросы до первого созвона.</p>
+        </div>
+        <div class="faq-list reveal">
+          <details><summary>Как проходит работа над проектом?</summary><ul class="faq-process-steps"><li><strong>01. Разбор задачи</strong> — цели, сроки, интеграции и желаемый результат.</li><li><strong>02. Договор и ТЗ</strong> — фиксируем этапы и ответственность до старта.</li><li><strong>03. Дизайн и разработка</strong> — интерфейс, backend и интеграции.</li><li><strong>04. Запуск и поддержка</strong> — сервер, аналитика и развитие продукта.</li></ul></details>
+          <details><summary>Сколько стоит разработка?</summary><p>Зависит от задачи, функций, интеграций и сроков. После короткого разбора даём ориентир по бюджету и этапам до старта работ.</p></details>
+          <details><summary>Можно ли доработать уже существующий проект?</summary><p>Да. Можем подключиться к текущему сайту, CRM, боту или backend и закрыть отдельный участок работ.</p></details>
+          <details><summary>Берёте ли поддержку после запуска?</summary><p>Да. Можем сопровождать продукт, исправлять ошибки, дорабатывать функции и помогать с развитием.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="container contact-card reveal contact-card-compact">
+        <div class="contact-copy">
+          <p class="section-kicker">Контакты</p>
+          <h2>Обсудим ваш проект</h2>
+          <p>Напишите нам напрямую или оставьте заявку — перезвоним или напишем вам.</p>
+          <div class="contact-methods">
+            <a href="mailto:live-dev@mail.ru"><span>Email</span><strong>live-dev@mail.ru</strong></a>
+            <a href="https://t.me/solovey_ev" target="_blank" rel="noopener"><span>Telegram</span><strong>@solovey_ev</strong></a>
+            <a href="tel:+375298945462"><span>Телефон</span><strong>+375 29 894-54-62</strong></a>
+          </div>
+        </div>
+        <form class="lead-form" id="leadForm">
+          <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" class="form-honeypot" />
+          <label>Имя<input type="text" name="name" required placeholder="Как к вам обращаться" autocomplete="name" /></label>
+          <label>Как с вами связаться<input type="text" name="contact" required placeholder="Telegram, телефон или email" autocomplete="tel" /></label>
+          <label>О задаче<textarea name="message" placeholder="Кратко опишите, что нужно сделать"></textarea></label>
+          <label class="form-consent"><input type="checkbox" required /> <span>Согласен на обработку персональных данных согласно <a href="/privacy/" target="_blank">политике конфиденциальности</a>.</span></label>
+          <button type="submit" class="btn btn-secondary">Получить оценку проекта</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer mega-footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="brand footer-brand-link" aria-label="На главную">
+          <span class="ld-logo-animated" aria-label="LiveDev">
+            <svg viewBox="0 0 620 120" xmlns="http://www.w3.org/2000/svg" role="img">
+              <defs>
+                <linearGradient id="ldmA" x1="20" y1="0" x2="120" y2="100" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#25D9FF"/>
+                  <stop offset=".52" stop-color="#2C7BFF"/>
+                  <stop offset="1" stop-color="#8A45FF"/>
+                </linearGradient>
+                <linearGradient id="ldpA" x1="282" y1="60" x2="382" y2="60" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#25D9FF"/>
+                  <stop offset=".48" stop-color="#2C7BFF"/>
+                  <stop offset="1" stop-color="#8A45FF"/>
+                </linearGradient>
+                <filter id="ldGlowA" x="-40%" y="-80%" width="180%" height="260%">
+                  <feGaussianBlur stdDeviation="3" result="b"/>
+                  <feMerge>
+                    <feMergeNode in="b"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+                <filter id="ldSparkGlow" x="-200%" y="-200%" width="500%" height="500%">
+                  <feGaussianBlur stdDeviation="5" result="b"/>
+                  <feMerge>
+                    <feMergeNode in="b"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <g filter="url(#ldGlowA)">
+                <path d="M38 22C23 36 16 50 16 60C16 70 23 84 38 98" stroke="url(#ldmA)" stroke-width="8" stroke-linecap="round" fill="none"/>
+                <path d="M112 22C127 36 134 50 134 60C134 70 127 84 112 98" stroke="url(#ldmA)" stroke-width="8" stroke-linecap="round" fill="none"/>
+                <circle cx="75" cy="60" r="12" fill="url(#ldmA)"/>
+              </g>
+
+              <text x="160" y="78" fill="#fff" font-size="52" font-weight="800" letter-spacing="-2.6" font-family="Manrope, Arial, Helvetica, sans-serif">Live</text>
+
+              <!-- full static pulse line: never disappears -->
+              <path class="ld-pulse-base" d="M282 60H313L323 44L334 80L346 60H382" stroke="url(#ldpA)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#ldGlowA)"/>
+
+              <!-- animated light running along the full pulse line -->
+              <circle class="ld-pulse-spark" r="5.5" fill="#A8FF35" filter="url(#ldSparkGlow)">
+                <animateMotion dur="2.4s" repeatCount="indefinite" path="M282 60H313L323 44L334 80L346 60H382" keyTimes="0;1" keySplines=".22 .8 .22 1" calcMode="spline"/>
+              </circle>
+
+              <!-- small moving highlight line, over full base line -->
+              <path class="ld-pulse-runner" d="M282 60H313L323 44L334 80L346 60H382" stroke="#A8FF35" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+              <text x="405" y="78" fill="#fff" font-size="52" font-weight="800" letter-spacing="-2.6" font-family="Manrope, Arial, Helvetica, sans-serif">Dev</text>
+            </svg>
+          </span>
+        </a>
+        <p>Превращаем идеи в живые продукты: сайты, CRM, Telegram Mini Apps, боты, AI-решения и автоматизация.</p>
+      </div>
+      <div class="footer-columns">
+        <div>
+          <h4>Навигация</h4>
+          <a href="/uslugi/">Все услуги</a>
+          <a href="#cases">Проекты</a>
+          <a href="#models">Форматы</a>
+          <a href="#team">Команда</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-col footer-contacts-col">
+          <h4>Контакты</h4>
+          <a href="https://t.me/solovey_ev" target="_blank" rel="noopener">Telegram</a>
+          <p class="copy-contact" data-copy-value="live-dev@mail.ru">Email: live-dev@mail.ru</p>
+          <p class="copy-contact" data-copy-value="+375298945462">Телефон: +375 29 894-54-62</p>
+        </div>
+        <div>
+          <h4>Услуги</h4>
+          <a href="/uslugi/razrabotka-saitov/">Разработка сайтов</a>
+          <a href="/uslugi/crm-sistemy/">CRM-системы</a>
+          <a href="/uslugi/telegram-mini-app/">Telegram Mini Apps</a>
+          <a href="/uslugi/telegram-boty/">Telegram-боты</a>
+          <a href="/uslugi/ai-avtomatizaciya/">AI-автоматизация</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 LiveDev. Витебск, Беларусь · работаем удалённо.</span>
+      <span>CRM · сайты · боты · Mini Apps · AI · DevOps</span>
+      <a href="/privacy/">Политика конфиденциальности</a>
+    </div>
+  </footer>
+
+  <div class="theme-switcher" id="themeSwitcher">
+    <button type="button" class="theme-switcher-orb" id="themeSwitcherToggle" aria-label="Тема: Тёмная. Нажмите, чтобы сменить">
+      <span class="theme-switcher-orb-halo theme-switcher-orb-halo--violet" aria-hidden="true"></span>
+      <span class="theme-switcher-orb-halo theme-switcher-orb-halo--lime" aria-hidden="true"></span>
+      <span class="theme-switcher-orb-halo theme-switcher-orb-halo--cyan" aria-hidden="true"></span>
+      <span class="theme-switcher-orb-halo theme-switcher-orb-halo--pink" aria-hidden="true"></span>
+      <span class="theme-switcher-orb-glow" aria-hidden="true"></span>
+      <span class="theme-switcher-orb-core" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <script src="assets/sw-register.js?v=20260723t"></script>
+  <script src="assets/site-api.js?v=20260723t"></script>
+  <script src="assets/script.js?v=20260723t"></script>
+  <script src="assets/theme-switcher.js?v=20260723t"></script>
+  <div class="copy-toast" id="copyToast" role="status" aria-live="polite">Скопировано</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "seo/base.html" %}
+{% block title %}Услуги разработки сайтов и программного обеспечения — LiveDev{% endblock %}
+{% block description %}Разработка сайтов, CRM, Telegram Mini Apps, ботов, мобильных приложений, AI-автоматизации и API-интеграций в Витебске и удалённо.{% endblock %}
+{% block og_title %}Услуги разработки — LiveDev{% endblock %}
+{% block og_description %}Сайты, CRM, Telegram, мобильные приложения, AI и интеграции под ключ.{% endblock %}
+{% block content %}
+<section class="seo-hero"><div class="seo-wrap">
+  <nav class="breadcrumbs"><a href="/">Главная</a><span>→</span><span>Услуги</span></nav>
+  <p class="section-kicker">LiveDev · Витебск, Беларусь</p>
+  <h1>Разработка цифровых продуктов для бизнеса</h1>
+  <p class="seo-lead">Можно начать с отдельной задачи, MVP или собрать полноценный продукт под ключ. Выберите направление, чтобы посмотреть состав работ и подходящие примеры.</p>
+</div></section>
+<section class="seo-section"><div class="seo-wrap"><div class="service-index-grid">
+  {% for slug, card in service_cards %}<a href="{% url 'service_detail' slug %}"><span>{{ forloop.counter|stringformat:"02d" }}</span><h2>{{ card.h1 }}</h2><p>{{ card.description }}</p><b>Подробнее →</b></a>{% endfor %}
+</div></div></section>
+{% include "seo/contact_form.html" %}
+{% endblock %}

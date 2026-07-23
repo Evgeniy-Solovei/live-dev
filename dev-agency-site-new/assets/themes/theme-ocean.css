@@ -1,0 +1,46 @@
+/* LiveDev — Океан (cyan / deep blue) */
+[data-theme="ocean"] {
+  --bg: #061520;
+  --bg2: #0a1e2e;
+  --surface: #0f2838;
+  --surface2: #143244;
+  --text: #e8f8ff;
+  --text-primary: #e8f8ff;
+  --text-body: #a8d4e8;
+  --text-muted: #6a9eb8;
+  --muted: #6a9eb8;
+  --line: #1e4a62;
+  --violet: #27b8ff;
+  --lime: #3dffe0;
+  --orange: #ff9a6b;
+  --focus: #ffe066;
+  --accent: #3dffe0;
+  --accent-text: #041018;
+  --page-bg: #041018;
+  --page-gradient: radial-gradient(circle at 20% -10%, rgba(39, 184, 255, .28), transparent 35%), radial-gradient(circle at 90% 5%, rgba(61, 255, 224, .12), transparent 32%), linear-gradient(180deg, #061520 0%, #081c2a 42%, #041018 100%);
+  --header-bg: rgba(6, 21, 32, .72);
+  --header-border: rgba(61, 255, 224, .12);
+  --header-cta-bg: #3dffe0;
+  --header-cta-text: #041018;
+  --nav-text: #c8ecff;
+  --card-bg: rgba(255, 255, 255, .04);
+  --card-border: rgba(61, 255, 224, .1);
+  --card-hover: rgba(39, 184, 255, .08);
+  --panel-bg: linear-gradient(180deg, rgba(39, 184, 255, .06), rgba(61, 255, 224, .04));
+  --orb-1: rgba(39, 184, 255, .32);
+  --orb-2: rgba(61, 255, 224, .14);
+  --glow: rgba(39, 184, 255, .12);
+  --logo-text: #e8f8ff;
+  --logo-spark: #3dffe0;
+  --progress: linear-gradient(90deg, #3dffe0, #27b8ff, #6b8cff);
+  --noise-opacity: .07;
+  --shadow: 0 24px 80px rgba(0, 20, 40, .4);
+  --input-bg: rgba(0, 0, 0, .22);
+  --btn-ghost-text: #e8f8ff;
+  --btn-ghost-border: rgba(61, 255, 224, .18);
+  --btn-ghost-bg: rgba(39, 184, 255, .06);
+  --showcase-bg: radial-gradient(circle at 12% 0%, rgba(61, 255, 224, .08), transparent 30%), radial-gradient(circle at 92% 18%, rgba(39, 184, 255, .14), transparent 34%), rgba(255, 255, 255, .04);
+  --trust-bg: rgba(61, 255, 224, .07);
+  --trust-border: rgba(61, 255, 224, .2);
+  --theme-preview: linear-gradient(135deg, #041018, #27b8ff);
+}

@@ -1,0 +1,45 @@
+{% extends "seo/base.html" %}
+{% block title %}{{ service.title }}{% endblock %}
+{% block description %}{{ service.description }}{% endblock %}
+{% block og_title %}{{ service.title }}{% endblock %}
+{% block og_description %}{{ service.description }}{% endblock %}
+{% block content %}
+<section class="seo-hero">
+  <div class="seo-wrap">
+    <nav class="breadcrumbs"><a href="/">Главная</a><span>→</span><a href="{% url 'service_index' %}">Услуги</a><span>→</span><span>{{ service.h1 }}</span></nav>
+    <p class="section-kicker">LiveDev · Витебск, Беларусь</p>
+    <h1>{{ service.h1 }}</h1>
+    <p class="seo-lead">{{ service.lead }}</p>
+    <div class="seo-actions"><a class="btn btn-primary" href="#contact">Получить оценку</a><a class="btn btn-ghost" href="#examples">Посмотреть примеры</a></div>
+  </div>
+</section>
+
+<section class="seo-section"><div class="seo-wrap">
+  <div class="seo-heading"><p class="section-kicker">Что получает бизнес</p><h2>Решение под задачу, а не набор лишних функций</h2></div>
+  <div class="seo-benefits">{% for benefit in service.benefits %}<article><span>0{{ forloop.counter }}</span><p>{{ benefit }}</p></article>{% endfor %}</div>
+</div></section>
+
+<section class="seo-section seo-section-alt"><div class="seo-wrap seo-two-columns">
+  <div><p class="section-kicker">Состав работ</p><h2>От разбора задачи до запуска</h2><p>Фиксируем этапы, показываем промежуточный результат и готовим продукт к реальному использованию.</p></div>
+  <ol class="seo-includes">{% for entry in service.includes %}<li><span>{{ forloop.counter|stringformat:"02d" }}</span>{{ entry }}</li>{% endfor %}</ol>
+</div></section>
+
+<section class="seo-section" id="examples"><div class="seo-wrap">
+  <div class="seo-heading"><p class="section-kicker">Примеры работ</p><h2>Проекты по этому направлению</h2><p>Каждый пример открыт на отдельной странице с индексируемым описанием.</p></div>
+  <div class="seo-cases">
+    {% for item in items %}<a href="{% url 'portfolio_detail' item.seo_slug %}" class="seo-case">
+      {% if item.resolved_image %}<img src="{{ item.resolved_image }}" alt="{{ item.title }}" width="1600" height="900" loading="lazy" />{% endif %}
+      <div><span>{{ item.category.label }}</span><h3>{{ item.title }}</h3><p>{{ item.text|truncatechars:180 }}</p></div>
+    </a>{% empty %}<p>Примеры этого направления скоро появятся.</p>{% endfor %}
+  </div>
+</div></section>
+
+<section class="seo-section seo-section-alt"><div class="seo-wrap seo-two-columns">
+  <div><p class="section-kicker">FAQ</p><h2>Частые вопросы</h2></div>
+  <div class="seo-faq">{% for question, answer in service.faq %}<details><summary>{{ question }}</summary><p>{{ answer }}</p></details>{% endfor %}</div>
+</div></section>
+
+{% include "seo/contact_form.html" %}
+
+<section class="seo-services"><div class="seo-wrap"><h2>Другие услуги</h2><div>{% for slug, label in services_nav %}{% if slug != service_slug %}<a href="{% url 'service_detail' slug %}">{{ label }}</a>{% endif %}{% endfor %}</div></div></section>
+{% endblock %}

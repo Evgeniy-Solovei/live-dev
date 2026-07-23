@@ -1,0 +1,73 @@
+name: live-dev
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    expose:
+      - "5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U livedev -d livedev"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Одно приложение: сайт + API + админка
+  app:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      POSTGRES_HOST: db
+      DEBUG: "0"
+      FRONTEND_DIR: /app/frontend
+      ALLOWED_HOSTS: live-dev.by,localhost,127.0.0.1,app
+      CSRF_TRUSTED_ORIGINS: https://live-dev.by
+      BEHIND_HTTPS_PROXY: "1"
+    volumes:
+      - media_data:/app/media
+    depends_on:
+      db:
+        condition: service_healthy
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8000/api/settings/ >/dev/null"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  nginx:
+    build:
+      context: .
+      dockerfile: deploy/nginx/Dockerfile
+    restart: unless-stopped
+    environment:
+      DOMAIN: live-dev.by
+      CERTBOT_EMAIL: ${CERTBOT_EMAIL:-live-dev@mail.ru}
+    volumes:
+      - media_data:/app/media:ro
+      - letsencrypt:/etc/letsencrypt
+      - certbot_webroot:/var/www/certbot
+    depends_on:
+      app:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  pgdata:
+  media_data:
+  letsencrypt:
+  certbot_webroot:

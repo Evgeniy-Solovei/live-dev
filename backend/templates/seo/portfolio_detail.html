@@ -1,0 +1,30 @@
+{% extends "seo/base.html" %}
+{% block title %}{{ meta_title }}{% endblock %}
+{% block description %}{{ meta_description }}{% endblock %}
+{% block og_title %}{{ meta_title }}{% endblock %}
+{% block og_description %}{{ meta_description }}{% endblock %}
+{% block og_image %}{% if og_image %}<meta property="og:image" content="{{ og_image }}" />{% endif %}{% endblock %}
+{% block content %}
+<section class="seo-hero portfolio-hero"><div class="seo-wrap">
+  <nav class="breadcrumbs"><a href="/">Главная</a><span>→</span><a href="{% url 'service_detail' service_slug %}">{{ service.h1 }}</a><span>→</span><span>{{ item.title }}</span></nav>
+  <p class="section-kicker">Пример проекта · {{ item.category.label }}</p>
+  <h1>{{ item.title }}</h1>
+  <p class="seo-lead">{{ item.text }}</p>
+  <div class="portfolio-tags">{% for point in item.points %}<span>{{ point }}</span>{% endfor %}</div>
+</div></section>
+
+{% if item.resolved_image %}<section class="portfolio-visual"><div class="seo-wrap"><img src="{{ item.resolved_image }}" alt="Интерфейс проекта {{ item.title }}" width="1600" height="900" /></div></section>{% endif %}
+
+<section class="seo-section"><div class="seo-wrap seo-two-columns">
+  <div><p class="section-kicker">О проекте</p><h2>Что реализовано</h2><p>{{ item.text }}</p></div>
+  <div class="portfolio-summary"><h3>Ключевые элементы</h3><ul>{% for point in item.points %}<li>{{ point }}</li>{% endfor %}<li>Адаптивный пользовательский интерфейс</li><li>Серверная логика и хранение данных</li></ul></div>
+</div></section>
+
+<section class="seo-section seo-section-alt"><div class="seo-wrap">
+  <p class="section-kicker">Связанная услуга</p><h2>{{ service.h1 }}</h2><p class="seo-lead">Можем спроектировать похожее решение под процессы и ограничения вашего бизнеса.</p><a class="btn btn-primary" href="{% url 'service_detail' service_slug %}">Подробнее об услуге</a>
+</div></section>
+
+{% include "seo/contact_form.html" %}
+
+{% if related %}<section class="seo-section"><div class="seo-wrap"><h2>Другие примеры</h2><div class="seo-cases">{% for card in related %}<a href="{% url 'portfolio_detail' card.seo_slug %}" class="seo-case">{% if card.resolved_image %}<img src="{{ card.resolved_image }}" alt="{{ card.title }}" loading="lazy" width="1600" height="900" />{% endif %}<div><h3>{{ card.title }}</h3><p>{{ card.text|truncatechars:150 }}</p></div></a>{% endfor %}</div></div></section>{% endif %}
+{% endblock %}

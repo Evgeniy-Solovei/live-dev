@@ -1,0 +1,85 @@
+{% extends "admin/change_list.html" %}
+
+{% block content %}
+<div class="mb-6 rounded-default border border-base-200 bg-base-50 p-4 dark:border-base-700 dark:bg-base-800">
+  <form method="get" class="mb-4 flex flex-wrap items-end gap-3">
+    <label class="flex flex-col gap-1 text-sm text-font-subtle-light dark:text-font-subtle-dark">
+      С
+      <input type="date" name="from" value="{{ summary_date_from }}"
+             class="rounded-default border border-base-200 bg-white px-3 py-2 dark:border-base-700 dark:bg-base-900">
+    </label>
+    <label class="flex flex-col gap-1 text-sm text-font-subtle-light dark:text-font-subtle-dark">
+      По
+      <input type="date" name="to" value="{{ summary_date_to }}"
+             class="rounded-default border border-base-200 bg-white px-3 py-2 dark:border-base-700 dark:bg-base-900">
+    </label>
+    <button type="submit" class="bg-primary-600 text-white rounded-default px-4 py-2 text-sm font-semibold">
+      Показать
+    </button>
+    <a href="?" class="rounded-default border border-base-200 px-4 py-2 text-sm dark:border-base-700">30 дней</a>
+  </form>
+
+  <div class="mb-4">
+    <div class="inline-block rounded-default border border-base-200 bg-white px-4 py-3 dark:border-base-700 dark:bg-base-900">
+      <div class="text-xs text-font-subtle-light dark:text-font-subtle-dark">Просмотров карточек</div>
+      <div class="mt-1 text-2xl font-bold">{{ summary_total }}</div>
+    </div>
+  </div>
+
+  <div class="grid gap-4 lg:grid-cols-2">
+    <div>
+      <h3 class="mb-2 text-sm font-semibold">По разделам (CRM / боты / лендинги…)</h3>
+      <div class="overflow-x-auto rounded-default border border-base-200 dark:border-base-700">
+        <table class="min-w-full text-sm">
+          <thead class="bg-base-100 dark:bg-base-900">
+            <tr>
+              <th class="px-3 py-2 text-left font-medium">Раздел</th>
+              <th class="px-3 py-2 text-left font-medium">Просмотры</th>
+              <th class="px-3 py-2 text-left font-medium">Сессии</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in summary_by_category %}
+            <tr class="border-t border-base-200 dark:border-base-700">
+              <td class="px-3 py-2">{{ row.category_label|default:row.category_slug }}</td>
+              <td class="px-3 py-2">{{ row.views }}</td>
+              <td class="px-3 py-2">{{ row.sessions }}</td>
+            </tr>
+            {% empty %}
+            <tr><td class="px-3 py-3 text-font-subtle-light dark:text-font-subtle-dark" colspan="3">Пока пусто</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="mb-2 text-sm font-semibold">Топ проектов</h3>
+      <div class="overflow-x-auto rounded-default border border-base-200 dark:border-base-700">
+        <table class="min-w-full text-sm">
+          <thead class="bg-base-100 dark:bg-base-900">
+            <tr>
+              <th class="px-3 py-2 text-left font-medium">Раздел</th>
+              <th class="px-3 py-2 text-left font-medium">Проект</th>
+              <th class="px-3 py-2 text-left font-medium">Просмотры</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in summary_by_item %}
+            <tr class="border-t border-base-200 dark:border-base-700">
+              <td class="px-3 py-2">{{ row.category_label }}</td>
+              <td class="px-3 py-2">{{ row.item_title }}</td>
+              <td class="px-3 py-2">{{ row.views }}</td>
+            </tr>
+            {% empty %}
+            <tr><td class="px-3 py-3 text-font-subtle-light dark:text-font-subtle-dark" colspan="3">Пока пусто</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ block.super }}
+{% endblock %}

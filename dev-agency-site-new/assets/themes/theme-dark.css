@@ -1,0 +1,46 @@
+/* LiveDev — Тёмная (текущая) */
+[data-theme="dark"] {
+  --bg: #090e1d;
+  --bg2: #0e1530;
+  --surface: #121a35;
+  --surface2: #182144;
+  --text: #ffffff;
+  --text-primary: #f3f6ff;
+  --text-body: #d2dbff;
+  --text-muted: #9fb0e8;
+  --muted: #9fb0e6;
+  --line: #2b3767;
+  --violet: #7c5cff;
+  --lime: #a8ff35;
+  --orange: #ff7a59;
+  --focus: #ffd84d;
+  --accent: #a8ff35;
+  --accent-text: #06101c;
+  --page-bg: #070b16;
+  --page-gradient: radial-gradient(circle at 20% -10%, rgba(124, 92, 255, .35), transparent 35%), radial-gradient(circle at 90% 5%, rgba(168, 255, 53, .15), transparent 32%), linear-gradient(180deg, #080d1c 0%, #0b1020 42%, #070b16 100%);
+  --header-bg: rgba(9, 14, 29, .68);
+  --header-border: rgba(255, 255, 255, .1);
+  --header-cta-bg: #ffffff;
+  --header-cta-text: #0b1020;
+  --nav-text: #dfe6ff;
+  --card-bg: rgba(255, 255, 255, .045);
+  --card-border: rgba(255, 255, 255, .1);
+  --card-hover: rgba(255, 255, 255, .07);
+  --panel-bg: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(124, 92, 255, .05));
+  --orb-1: rgba(124, 92, 255, .35);
+  --orb-2: rgba(168, 255, 53, .12);
+  --glow: rgba(124, 92, 255, .13);
+  --logo-text: #ffffff;
+  --logo-spark: #a8ff35;
+  --progress: linear-gradient(90deg, var(--lime), var(--violet), #4bd8ff);
+  --noise-opacity: .08;
+  --shadow: 0 24px 80px rgba(0, 0, 0, .35);
+  --input-bg: rgba(0, 0, 0, .2);
+  --btn-ghost-text: #ffffff;
+  --btn-ghost-border: rgba(255, 255, 255, .18);
+  --btn-ghost-bg: rgba(255, 255, 255, .04);
+  --showcase-bg: radial-gradient(circle at 12% 0%, rgba(168, 255, 53, .08), transparent 30%), radial-gradient(circle at 92% 18%, rgba(124, 92, 255, .16), transparent 34%), rgba(255, 255, 255, .045);
+  --trust-bg: rgba(168, 255, 53, .06);
+  --trust-border: rgba(168, 255, 53, .18);
+  --theme-preview: linear-gradient(135deg, #070b16, #7c5cff);
+}

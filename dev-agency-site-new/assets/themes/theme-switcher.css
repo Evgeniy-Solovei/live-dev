@@ -1,0 +1,75 @@
+/* LiveDev — лёгкий шар смены темы (без тяжёлых filter-анимаций) */
+
+.theme-switcher {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 120;
+  pointer-events: none;
+}
+
+.theme-switcher > * {
+  pointer-events: auto;
+}
+
+.theme-switcher-orb {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  transition: transform .15s ease;
+}
+
+.theme-switcher-orb:hover {
+  transform: scale(1.08);
+}
+
+.theme-switcher-orb:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.theme-switcher-orb-halo,
+.theme-switcher-orb-glow {
+  display: none;
+}
+
+.theme-switcher-orb-core {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, .45), transparent 42%),
+    linear-gradient(135deg, #7c5cff, #27d9ff 45%, #a8ff35);
+  box-shadow:
+    0 0 18px rgba(124, 92, 255, .55),
+    0 0 36px rgba(39, 217, 255, .28);
+  animation: orbPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes orbPulse {
+  0%, 100% { box-shadow: 0 0 16px rgba(124, 92, 255, .5), 0 0 30px rgba(39, 217, 255, .22); }
+  50% { box-shadow: 0 0 22px rgba(168, 255, 53, .55), 0 0 40px rgba(124, 92, 255, .35); }
+}
+
+@media (max-width: 640px) {
+  .theme-switcher {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .theme-switcher-orb {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-switcher-orb-core {
+    animation: none;
+  }
+}

@@ -1,0 +1,721 @@
+[
+  {
+    "model": "content.showcasecategory",
+    "pk": 1,
+    "fields": {
+      "slug": "crm",
+      "label": "CRM и личные кабинеты",
+      "sort_order": 0,
+      "is_active": true,
+      "updated_at": "2026-07-22T13:34:25.851Z"
+    }
+  },
+  {
+    "model": "content.showcasecategory",
+    "pk": 2,
+    "fields": {
+      "slug": "telegram",
+      "label": "Telegram Mini App",
+      "sort_order": 1,
+      "is_active": true,
+      "updated_at": "2026-07-22T13:34:25.857Z"
+    }
+  },
+  {
+    "model": "content.showcasecategory",
+    "pk": 3,
+    "fields": {
+      "slug": "bots",
+      "label": "Боты для мессенджеров",
+      "sort_order": 2,
+      "is_active": true,
+      "updated_at": "2026-07-22T13:34:25.863Z"
+    }
+  },
+  {
+    "model": "content.showcasecategory",
+    "pk": 4,
+    "fields": {
+      "slug": "landings",
+      "label": "Лендинги",
+      "sort_order": 3,
+      "is_active": true,
+      "updated_at": "2026-07-22T13:34:25.868Z"
+    }
+  },
+  {
+    "model": "content.showcasecategory",
+    "pk": 5,
+    "fields": {
+      "slug": "shop",
+      "label": "Сайты и приложения",
+      "sort_order": 4,
+      "is_active": true,
+      "updated_at": "2026-07-22T13:34:25.872Z"
+    }
+  },
+  {
+    "model": "content.showcasecategory",
+    "pk": 6,
+    "fields": {
+      "slug": "ai",
+      "label": "AI-автоматизация",
+      "sort_order": 5,
+      "is_active": true,
+      "updated_at": "2026-07-22T13:34:25.876Z"
+    }
+  },
+  {
+    "model": "content.showcasecategory",
+    "pk": 7,
+    "fields": {
+      "slug": "vpn",
+      "label": "VPN и инфраструктура",
+      "sort_order": 6,
+      "is_active": true,
+      "updated_at": "2026-07-22T13:34:25.879Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 67,
+    "fields": {
+      "category": 1,
+      "title": "Система учёта баллонов",
+      "text": "Веб-система для управления складскими и производственными процессами. Сотрудники работают с продуктами, баллонами, атрибутами, сертификатами, приёмкой, отгрузкой, заправкой и импортом данных в едином интерфейсе.",
+      "points": [
+        "приемка",
+        "отгрузка",
+        "статистика"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/crm-1.webp",
+      "sort_order": 0,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.853Z",
+      "updated_at": "2026-07-23T09:27:00.002Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 68,
+    "fields": {
+      "category": 1,
+      "title": "CRM учета бронирования",
+      "text": "Административная панель для круизного сервиса с управлением бронированиями, платежами и расписаниями. Система показывает выручку, статусы заказов, занятые места, данные клиентов.",
+      "points": [
+        "брони",
+        "оплаты",
+        "аналитика"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/crm-2.webp",
+      "sort_order": 1,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.854Z",
+      "updated_at": "2026-07-23T09:30:06.749Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 69,
+    "fields": {
+      "category": 1,
+      "title": "Честный знак",
+      "text": "Платформа по работе с Честный знак. Создание товары, контроль остатков, выпуск маркировок, списывание товара в брак, контроль остатков. Еженедельные отчёты.",
+      "points": [
+        "товары",
+        "остатки",
+        "отчёты"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/crm-3.webp",
+      "sort_order": 2,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.854Z",
+      "updated_at": "2026-07-22T22:42:24.214Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 70,
+    "fields": {
+      "category": 1,
+      "title": "Личный кабинет",
+      "text": "Личный кабинет пользователя для управления платежами и услугами. В системе можно пополнять баланс, оплачивать услуги и коммунальные платежи, покупать билеты, хранить документы и просматривать историю операций.",
+      "points": [
+        "баланс",
+        "платежи",
+        "документы"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/crm-4.webp",
+      "sort_order": 3,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.855Z",
+      "updated_at": "2026-07-23T09:10:22.152Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 71,
+    "fields": {
+      "category": 1,
+      "title": "CRM салона",
+      "text": "CRM-система для салона красоты с календарём записей, управлением мастерами, клиентами, услугами и финансами. Поддерживает создание новых записей, контроль расписания и удобную работу с мобильного устройства.",
+      "points": [
+        "запись",
+        "календарь",
+        "напоминания"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/crm-5.webp",
+      "sort_order": 4,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.855Z",
+      "updated_at": "2026-07-23T09:29:23.700Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 72,
+    "fields": {
+      "category": 2,
+      "title": "Онлайн запись на услуги",
+      "text": "Пользователь выбирает специалиста и время, отслеживает статус заявки, оплачивают услуги, получают напоминания и управляет своими записями.",
+      "points": [
+        "каталог услуг",
+        "онлайн-запись",
+        "уведомления"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/tg-booking.webp",
+      "sort_order": 0,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.858Z",
+      "updated_at": "2026-07-23T09:31:34.938Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 73,
+    "fields": {
+      "category": 2,
+      "title": "Skillbox «Бокси»",
+      "text": "Telegram Mini App с тап-игрой для Skillbox: пользователи выполняют задания, получают награды, соревнуются в рейтинге и вовлекаются в обучение через игровые механики.",
+      "points": [
+        "тап-игра",
+        "награды",
+        "задания"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/tg-1.webp",
+      "sort_order": 1,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.859Z",
+      "updated_at": "2026-07-23T09:17:35.963Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 74,
+    "fields": {
+      "category": 2,
+      "title": "Irwin",
+      "text": "Развлекательная игра - пользователи развивают питомцев, объединяют их с разными характеристиками и получают новых уникальных персонажей. Доступны ежедневные задания, система уровней, коллекции и бонусов.",
+      "points": [
+        "питомцы",
+        "бонусы",
+        "задания"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/tg-2.webp",
+      "sort_order": 2,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.860Z",
+      "updated_at": "2026-07-22T22:46:17.822Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 75,
+    "fields": {
+      "category": 2,
+      "title": "Royal Tap",
+      "text": "Мобильная стратегия с прокачкой героев и крепости. Игрок собирает армию, открывает уровни, сражается с противниками, зарабатывает ресурсы и усиливает персонажей. Ежедневные задания и бонусы.",
+      "points": [
+        "аркада",
+        "прокачка",
+        "стратегия"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/tg-3.webp",
+      "sort_order": 3,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.860Z",
+      "updated_at": "2026-07-23T09:19:43.170Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 76,
+    "fields": {
+      "category": 2,
+      "title": "Фортовый Енот",
+      "text": "Telegram Mini App с системой прокачки персонажа, ежедневными заданиями и бонусами. Пользователь зарабатывает монеты, приглашает друзей и участвует в событиях и розыгрыше призов.",
+      "points": [
+        "прокачка",
+        "скины",
+        "бонусы"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/tg-4.webp",
+      "sort_order": 4,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.861Z",
+      "updated_at": "2026-07-23T09:21:45.476Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 77,
+    "fields": {
+      "category": 2,
+      "title": "RNDVU",
+      "text": "Telegram Mini App для знакомств с лентой анкет, лайками, чатами и игровым подбором пары. Пользователи общаются, находят взаимные симпатии и назначают встречи.",
+      "points": [
+        "лента",
+        "лайки",
+        "чаты"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/tg-5.webp",
+      "sort_order": 5,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.861Z",
+      "updated_at": "2026-07-23T09:22:16.740Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 78,
+    "fields": {
+      "category": 2,
+      "title": "АстроКухня",
+      "text": "Персональное Telegram Mini App с рецептами, расчётом КБЖУ и астрологическими рекомендациями. Сервис помогает планировать питание и подбирать блюда под настроение.",
+      "points": [
+        "рецепты",
+        "астрология",
+        "КЖБУ"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/tg-6.webp",
+      "sort_order": 6,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.862Z",
+      "updated_at": "2026-07-23T09:22:32.937Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 79,
+    "fields": {
+      "category": 3,
+      "title": "Бот автосервиса",
+      "text": "Бот для автосервиса, который позволяет клиентам выбирать услуги, записываться на удобное время, изменять или отменять запись и получать напоминания. Для администратора предусмотрено управление ценами, расходами и заявками.",
+      "points": [
+        "запись",
+        "цены",
+        "расходы"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/bots-1.webp",
+      "sort_order": 0,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.865Z",
+      "updated_at": "2026-07-23T09:34:31.351Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 80,
+    "fields": {
+      "category": 3,
+      "title": "Бот Миллионер",
+      "text": "Telegram-бот с реферальной системой подарков. Пользователи отправляют подарки друзьям, приглашают новых участников, отслеживают уровни, историю операций и доход. Система автоматически рассчитывает вознаграждения и статистику.",
+      "points": [
+        "подарки",
+        "рефералы",
+        "доход"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/bots-2.webp",
+      "sort_order": 1,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.865Z",
+      "updated_at": "2026-07-23T09:35:25.598Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 81,
+    "fields": {
+      "category": 3,
+      "title": "Бот английского",
+      "text": "Обучающий Telegram-бот для ежедневного изучения английского языка. Внутри доступны задания по грамматике, чтению, аудированию и речи, аудиопрактика, отслеживание прогресса, рейтинг и система мотивационных наград.",
+      "points": [
+        "задания",
+        "аудио",
+        "A0–C2"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/bots-3.webp",
+      "sort_order": 2,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.866Z",
+      "updated_at": "2026-07-23T09:35:40.431Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 82,
+    "fields": {
+      "category": 3,
+      "title": "Бот поддержки",
+      "text": "Мультиканальный бот поддержки для Telegram, VK и MAX. Он отвечает на частые вопросы по базе знаний, помогает с заказами, оплатой и техническими темами, а при необходимости передаёт диалог оператору вместе с историей обращения.",
+      "points": [
+        "база знаний",
+        "Telegram",
+        "VK · MAX"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/bots-4.webp",
+      "sort_order": 3,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.866Z",
+      "updated_at": "2026-07-23T09:36:01.830Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 83,
+    "fields": {
+      "category": 3,
+      "title": "Финансовый бот",
+      "text": "Telegram-бот для ведения личных финансов и повышения финансовой грамотности. Пользователь фиксирует доходы и расходы, анализирует категории трат, ставит цели, ведёт копилку, отслеживает прогресс и получает полезные советы.",
+      "points": [
+        "траты",
+        "анализ",
+        "копилка"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/bots-5.webp",
+      "sort_order": 4,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.866Z",
+      "updated_at": "2026-07-23T09:36:16.596Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 84,
+    "fields": {
+      "category": 4,
+      "title": "Turtle Cruise",
+      "text": "Сайт для круизной компании с презентацией круизов, маршрутов и частных морских прогулок. Пользователь может изучить программу, выбрать подходящий круиз, стоимость и преимущества сервиса, а затем перейти к бронированию.",
+      "points": [
+        "круизы",
+        "онлайн-оплата",
+        "бронирование"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/land-1.webp",
+      "sort_order": 0,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.869Z",
+      "updated_at": "2026-07-23T09:37:32.730Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 85,
+    "fields": {
+      "category": 4,
+      "title": "Ремонт под ключ",
+      "text": "Корпоративный сайт компании по ремонту квартир, домов и коттеджей под ключ. В проекте представлены услуги, стоимость работ, преимущества, этапы ремонта и реальные примеры объектов с фотографиями до и после завершения работ.",
+      "points": [
+        "ремонт",
+        "смета",
+        "заявка"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/land-2.webp",
+      "sort_order": 1,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.870Z",
+      "updated_at": "2026-07-23T09:37:58.679Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 86,
+    "fields": {
+      "category": 4,
+      "title": "Автосервис",
+      "text": "Сайт автосервиса с каталогом услуг, ценами и удобной онлайн-записью. Клиент может выбрать диагностику или ремонт, ознакомиться с преимуществами мастерской, посмотреть перечень работ и быстро оставить заявку на обслуживание автомобиля.",
+      "points": [
+        "диагностика",
+        "ремонт",
+        "запись"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/land-3.webp",
+      "sort_order": 2,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.870Z",
+      "updated_at": "2026-07-23T09:38:12.728Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 87,
+    "fields": {
+      "category": 4,
+      "title": "Quest House",
+      "text": "Сайт квест-комнаты с каталогом сценариев и системой онлайн-бронирования. Посетитель выбирает уровень сложности, дату и время игры, знакомится с описанием, фотографиями и отзывами, после чего оформляет запись на подходящий сеанс.",
+      "points": [
+        "квесты",
+        "бронь",
+        "атмосфера"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/land-4.webp",
+      "sort_order": 3,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.870Z",
+      "updated_at": "2026-07-23T09:38:27.032Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 88,
+    "fields": {
+      "category": 4,
+      "title": "Психолог",
+      "text": "Персональный сайт психолога с описанием направлений работы, форматов консультаций и стоимости услуг. Пользователь может узнать о специалисте, выбрать очную или онлайн-встречу, ознакомиться с подходом и записаться на консультацию через сайт.",
+      "points": [
+        "консультации",
+        "запись",
+        "онлайн"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/land-5.webp",
+      "sort_order": 4,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.871Z",
+      "updated_at": "2026-07-23T09:38:39.963Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 89,
+    "fields": {
+      "category": 5,
+      "title": "Solovey Desert",
+      "text": "Интернет-магазин с каталогом тортов, наборов, капкейков и других десертов. Реализованы категории, фильтрация товаров, корзина, изменение количества, расчёт итоговой суммы, оформление заказа и управление доставкой.",
+      "points": [
+        "каталог",
+        "корзина",
+        "заказы"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/shop-1.webp",
+      "sort_order": 0,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.873Z",
+      "updated_at": "2026-07-23T09:43:51.214Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 90,
+    "fields": {
+      "category": 5,
+      "title": "Nexora",
+      "text": "Интернет-магазин электроники с каталогом смартфонов, ноутбуков, аксессуаров и гаджетов. В системе доступны поиск, фильтры по параметрам, избранное, корзина, промокоды, расчёт скидки, рассрочка и несколько способов онлайн-оплаты.",
+      "points": [
+        "каталог",
+        "фильтры",
+        "заказ"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/shop-2.webp",
+      "sort_order": 1,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.874Z",
+      "updated_at": "2026-07-23T09:44:12.909Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 91,
+    "fields": {
+      "category": 5,
+      "title": "WooDecor",
+      "text": "Интернет-магазин деревянных сувениров и предметов интерьера. Пользователь может искать и фильтровать товары, выбирать параметры изделия, добавлять позиции в корзину, оформлять доставку, оплачивать заказ и отправлять заявку на индивидуальное изготовление.",
+      "points": [
+        "каталог",
+        "ручная работа",
+        "заказ"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/shop-3.webp",
+      "sort_order": 2,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.874Z",
+      "updated_at": "2026-07-23T09:44:34.274Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 92,
+    "fields": {
+      "category": 6,
+      "title": "AI-агент для бизнеса",
+      "text": "Платформа с AI-агентом автоматизирует обработку обращений и заявок, отвечает клиентам по разным каналам, запускает рабочие сценарии и помогает контролировать продажи через единый кабинет.",
+      "points": [
+        "диалоги",
+        "заявки",
+        "автоматизация"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/ai-1.webp",
+      "sort_order": 0,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.877Z",
+      "updated_at": "2026-07-23T09:15:25.330Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 93,
+    "fields": {
+      "category": 6,
+      "title": "AI-продажи",
+      "text": "Система автоматизирует основные этапы продаж: поиск и квалификацию лидов, прогрев, рассылки и сопровождение сделок. В кабинете отображаются воронка, выручка, конверсия и эффективность работы.",
+      "points": [
+        "лиды",
+        "воронка",
+        "агенты"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/ai-2.webp",
+      "sort_order": 1,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.877Z",
+      "updated_at": "2026-07-23T09:16:25.807Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 94,
+    "fields": {
+      "category": 6,
+      "title": "Разбор документов",
+      "text": "Интеллектуальная система автоматически распознаёт счета, акты и накладные, извлекает реквизиты, проверяет корректность данных и переносит информацию в нужные поля CRM без ручного ввода.",
+      "points": [
+        "распознавание",
+        "CRM",
+        "экономия"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/ai-3.webp",
+      "sort_order": 2,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.878Z",
+      "updated_at": "2026-07-23T09:16:43.343Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 95,
+    "fields": {
+      "category": 7,
+      "title": "VPN-сервис",
+      "text": "Шифрование, серверы и мониторинг сети. Гибкая инфраструктура , централизованное управление. Различные варианты доступов для пользователей.",
+      "points": [
+        "шифрование",
+        "серверы",
+        "мониторинг"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/vpn-1.webp",
+      "sort_order": 0,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.880Z",
+      "updated_at": "2026-07-22T21:46:52.464Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 96,
+    "fields": {
+      "category": 7,
+      "title": "Закрытая сеть для команды",
+      "text": "Доступы сотрудников к корпоративной сети VPN. Отслеживание трафика, журнал событий по каждому участнику сети.   Аналитика эффективности сотрудников.",
+      "points": [
+        "сотрудники",
+        "роли",
+        "контроль"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/vpn-2.webp",
+      "sort_order": 1,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.880Z",
+      "updated_at": "2026-07-22T22:40:37.593Z"
+    }
+  },
+  {
+    "model": "content.showcaseitem",
+    "pk": 97,
+    "fields": {
+      "category": 7,
+      "title": "Инфраструктура запуска",
+      "text": "Запуски серверов, выпуск SSL сертификатов, ежедневные бэкапы базы данных. Мониторинг нагрузки системы с уведомлениями. Аналитика работы системы.",
+      "points": [
+        "серверы",
+        "бэкапы",
+        "алерты"
+      ],
+      "image": "",
+      "image_url": "assets/showcase/vpn-3.webp",
+      "sort_order": 2,
+      "is_active": true,
+      "created_at": "2026-07-22T13:34:25.881Z",
+      "updated_at": "2026-07-23T09:05:21.108Z"
+    }
+  },
+  {
+    "model": "core.sitesettings",
+    "pk": 1,
+    "fields": {
+      "site_name": "LiveDev",
+      "contact_email": "live-dev@mail.ru",
+      "contact_phone": "+375 29 894-54-62",
+      "contact_telegram": "@solovey_ev",
+      "telegram_bot_token": "",
+      "telegram_chat_id": "",
+      "yandex_metrika_id": "",
+      "yandex_metrika_webvisor": true,
+      "yandex_goal_name": "lead_submit",
+      "yandex_ads_enabled": false,
+      "yandex_ads_block_id": "",
+      "google_analytics_id": "",
+      "google_ads_id": "",
+      "google_tag_manager_id": "",
+      "analytics_enabled": true,
+      "updated_at": "2026-07-22T15:45:57.388Z"
+    }
+  }
+]

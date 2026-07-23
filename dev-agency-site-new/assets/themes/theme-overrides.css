@@ -1,0 +1,446 @@
+/* LiveDev — применение CSS-переменных тем ко всему сайту */
+
+html {
+  background: var(--page-bg, #070b16);
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+body {
+  background: transparent !important;
+  color: var(--text-body, #d2dbff) !important;
+}
+
+body::before {
+  background: var(--page-gradient) !important;
+  opacity: var(--page-gradient-opacity, .2);
+}
+
+.noise {
+  opacity: var(--noise-opacity, .08);
+}
+
+.cursor-glow {
+  background: radial-gradient(circle, var(--glow, rgba(124, 92, 255, .13)), transparent 62%) !important;
+}
+
+.scroll-progress {
+  background: var(--progress) !important;
+}
+
+.site-header {
+  background: var(--header-bg) !important;
+  border-color: var(--header-border) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+.nav a {
+  color: var(--nav-text) !important;
+}
+
+.nav a::after {
+  background: var(--accent) !important;
+}
+
+.header-cta {
+  background: var(--header-cta-bg) !important;
+  color: var(--header-cta-text) !important;
+}
+
+.burger span {
+  background: var(--text-primary) !important;
+}
+
+.site-header.is-open .nav {
+  background: var(--surface) !important;
+  border-color: var(--card-border) !important;
+}
+
+.ld-logo-animated text {
+  fill: var(--logo-text) !important;
+}
+
+.ld-pulse-runner,
+.ld-pulse-spark {
+  stroke: var(--logo-spark) !important;
+  fill: var(--logo-spark) !important;
+}
+
+.hero-bg-orb.orb-1 { background: var(--orb-1) !important; }
+.hero-bg-orb.orb-2 { background: var(--orb-2) !important; }
+
+.eyebrow,
+.section-kicker,
+.showcase-category,
+.estimate-kicker {
+  color: var(--accent) !important;
+  border-color: color-mix(in srgb, var(--accent) 28%, transparent) !important;
+}
+
+.eyebrow {
+  background: color-mix(in srgb, var(--accent) 8%, transparent) !important;
+}
+
+.eyebrow span {
+  background: var(--accent) !important;
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 60%, transparent) !important;
+}
+
+.hero-title,
+h1, h2, h3, h4,
+.section-heading h2,
+.contact-copy h2,
+.problem-card h3,
+.model-card h3,
+.team-card h3,
+.faq-list summary,
+.estimate-head h3,
+.showcase-content h3 {
+  color: var(--text-primary) !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+.hero-lead,
+.section-heading p,
+.contact-copy p,
+.problem-card p,
+.model-card p,
+.team-card p,
+.faq-list p,
+.faq-process-steps li,
+.showcase-content > p:not(.showcase-category),
+.estimate-head p:not(.estimate-kicker),
+.estimate-row b,
+.hero-proof-selling span,
+.contact-methods a span,
+.footer,
+.footer-columns a,
+.footer-columns p,
+.mega-footer .footer-columns a,
+.mega-footer .footer-columns p {
+  color: var(--text-body) !important;
+}
+
+.hero-proof-selling span,
+.estimate-row span,
+.form-note,
+.showcase-counter {
+  color: var(--text-muted) !important;
+}
+
+.client-points span {
+  color: var(--text-primary) !important;
+}
+
+.product-tab:not(.is-active) {
+  color: var(--text-body) !important;
+}
+
+.showcase-arrows button {
+  color: var(--text-primary) !important;
+}
+
+.showcase-bottom {
+  border-top-color: var(--card-border) !important;
+}
+
+.showcase-note {
+  color: var(--text-muted) !important;
+}
+
+.hero-proof-selling strong,
+.estimate-result strong,
+.estimate-row b {
+  color: var(--text-primary) !important;
+}
+
+.hero-proof-selling div {
+  background: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+[data-theme="light"] .hero-proof-selling div {
+  background: rgba(255, 255, 255, .88) !important;
+  border-color: rgba(10, 15, 30, .1) !important;
+  box-shadow: 0 8px 28px rgba(10, 15, 30, .06);
+}
+
+[data-theme="light"] .mega-footer,
+[data-theme="light"] .footer-bottom,
+[data-theme="light"] .footer-brand p {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="light"] .footer-columns a,
+[data-theme="light"] .contact-methods strong {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .marquee-track {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .showcase-counter,
+[data-theme="light"] .model-number {
+  color: var(--text-muted) !important;
+}
+
+/* --- Светлая тема: контраст eyebrow + блок «Примеры» --- */
+[data-theme="light"] .eyebrow,
+[data-theme="light"] .section-kicker {
+  color: var(--accent-eyebrow, #2f6600) !important;
+  background: rgba(74, 158, 0, .12) !important;
+  border-color: rgba(58, 122, 0, .32) !important;
+}
+
+[data-theme="light"] .eyebrow span {
+  background: var(--accent-eyebrow, #2f6600) !important;
+  box-shadow: 0 0 12px rgba(58, 122, 0, .45) !important;
+}
+
+[data-theme="light"] .product-showcase {
+  background: var(--showcase-bg, #fff) !important;
+  border-color: rgba(10, 15, 30, .12) !important;
+  box-shadow: 0 16px 48px rgba(10, 15, 30, .07);
+}
+
+[data-theme="light"] .showcase-visual {
+  background: linear-gradient(180deg, #f7f8fb, #e8ecf4) !important;
+  border-color: rgba(10, 15, 30, .12) !important;
+}
+
+[data-theme="light"] .showcase-category {
+  color: var(--showcase-category, #3a7a00) !important;
+}
+
+[data-theme="light"] .showcase-content h3 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .showcase-content > p:not(.showcase-category) {
+  color: var(--showcase-text, #1a2744) !important;
+}
+
+[data-theme="light"] .client-points span {
+  color: var(--showcase-text, #1a2744) !important;
+  background: var(--showcase-surface, #f3f6fd) !important;
+  border-color: rgba(10, 15, 30, .1) !important;
+}
+
+[data-theme="light"] .product-tab:not(.is-active) {
+  color: var(--showcase-text, #1a2744) !important;
+  background: #fff !important;
+  border-color: rgba(10, 15, 30, .12) !important;
+}
+
+[data-theme="light"] .product-tab.is-active {
+  color: #fff !important;
+}
+
+[data-theme="light"] .showcase-bottom {
+  border-top-color: rgba(10, 15, 30, .1) !important;
+}
+
+[data-theme="light"] .showcase-arrows button {
+  color: var(--text-primary) !important;
+  background: #fff !important;
+  border-color: rgba(10, 15, 30, .14) !important;
+}
+
+[data-theme="light"] .showcase-note {
+  color: var(--showcase-text-muted, #3d4d6e) !important;
+}
+
+[data-theme="light"] .dark-panel {
+  background: linear-gradient(180deg, #f5f8ff 0%, #eef2fb 100%) !important;
+  border-color: rgba(10, 15, 30, .08) !important;
+}
+
+[data-theme="light"] #cases .section-heading h2,
+[data-theme="light"] #cases .section-heading .section-kicker {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .cases-head-copy,
+[data-theme="light"] .cases-head-copy p {
+  color: var(--text-body) !important;
+}
+
+.hero-proof-selling div,
+.service-card,
+.team-card,
+.model-card,
+.problem-card,
+.faq-list details,
+.product-tab,
+.client-points span,
+.estimate-row,
+.showcase-arrows button {
+  background: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+.service-card:hover,
+.team-card:hover,
+.model-card:hover,
+.product-tab:hover {
+  background: var(--card-hover) !important;
+  border-color: color-mix(in srgb, var(--accent) 28%, transparent) !important;
+}
+
+.product-tab.is-active {
+  background: var(--accent) !important;
+  color: var(--accent-text) !important;
+  border-color: color-mix(in srgb, var(--accent) 70%, transparent) !important;
+}
+
+.product-showcase {
+  background: var(--showcase-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+/* Картинка на весь кадр 16:9 — без letterbox, без обрезки контента */
+.showcase-visual {
+  background: #070b14 !important;
+  border-color: var(--card-border) !important;
+  overflow: hidden !important;
+}
+
+.showcase-shot {
+  object-fit: fill !important;
+  object-position: center center !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.dark-panel {
+  background: var(--panel-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+.faq-section {
+  background: var(--panel-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+.contact-section {
+  background: radial-gradient(circle at 82% 0%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 34%) !important;
+}
+
+.team-section {
+  background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--violet) 14%, transparent), transparent 35%) !important;
+}
+
+.contact-card {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--violet) 18%, transparent), var(--card-bg)) !important;
+  border-color: var(--card-border) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+.hero-trust-grid span {
+  background: var(--trust-bg) !important;
+  border-color: var(--trust-border) !important;
+  color: var(--text-body) !important;
+}
+
+.hero-trust-grid span::before {
+  background: var(--accent) !important;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 55%, transparent) !important;
+}
+
+.btn-primary {
+  background: var(--violet) !important;
+  box-shadow: 0 18px 50px color-mix(in srgb, var(--violet) 35%, transparent) !important;
+}
+
+.btn-secondary,
+.estimate-result a {
+  background: var(--accent) !important;
+  color: var(--accent-text) !important;
+}
+
+.btn-ghost {
+  color: var(--btn-ghost-text) !important;
+  border-color: var(--btn-ghost-border) !important;
+  background: var(--btn-ghost-bg) !important;
+}
+
+.lead-form label {
+  color: var(--text-body) !important;
+}
+
+.lead-form input,
+.lead-form textarea {
+  background: var(--input-bg) !important;
+  border-color: var(--card-border) !important;
+  color: var(--text-primary) !important;
+}
+
+.lead-form input:focus,
+.lead-form textarea:focus {
+  border-color: var(--focus) !important;
+}
+
+.contact-methods a {
+  background: var(--input-bg) !important;
+  border-color: var(--card-border) !important;
+  color: var(--text-primary) !important;
+}
+
+.avatar {
+  background: linear-gradient(135deg, var(--violet), color-mix(in srgb, var(--accent) 40%, #4bd8ff)) !important;
+}
+
+.team-card span,
+.model-card b,
+.problem-card span {
+  color: var(--accent) !important;
+}
+
+.chart-bars i,
+.preview-bars span {
+  background: linear-gradient(180deg, var(--accent), var(--violet)) !important;
+}
+
+.footer {
+  border-color: var(--card-border) !important;
+}
+
+.mega-footer .footer-columns h4,
+.mega-footer .footer-contacts-col h4 {
+  color: var(--accent) !important;
+}
+
+.copy-toast {
+  background: color-mix(in srgb, var(--surface) 94%, transparent) !important;
+  border-color: color-mix(in srgb, var(--accent) 28%, transparent) !important;
+  color: var(--text-primary) !important;
+}
+
+.hero-estimate-card::after {
+  background:
+    radial-gradient(circle at 15% 8%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 28%),
+    radial-gradient(circle at 92% 22%, color-mix(in srgb, var(--violet) 12%, transparent), transparent 34%),
+    radial-gradient(circle at 55% 100%, color-mix(in srgb, var(--violet) 18%, transparent), transparent 42%),
+    color-mix(in srgb, var(--surface) 92%, transparent) !important;
+}
+
+.estimate-result {
+  background:
+    radial-gradient(circle at 15% 15%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 34%),
+    linear-gradient(135deg, color-mix(in srgb, var(--violet) 24%, transparent), var(--card-bg)) !important;
+  border-color: color-mix(in srgb, var(--accent) 18%, transparent) !important;
+}
+
+.hero-estimate-card {
+  box-shadow:
+    0 28px 90px color-mix(in srgb, var(--page-bg) 60%, transparent),
+    0 0 0 1px var(--card-border),
+    0 0 70px color-mix(in srgb, var(--violet) 16%, transparent),
+    0 0 90px color-mix(in srgb, var(--accent) 8%, transparent) !important;
+}

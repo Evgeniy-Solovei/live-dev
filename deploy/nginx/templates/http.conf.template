@@ -1,0 +1,15 @@
+limit_req_zone $binary_remote_addr zone=leads:10m rate=5r/m;
+limit_req_zone $binary_remote_addr zone=analytics:10m rate=30r/m;
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ${DOMAIN};
+    client_max_body_size 4m;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    include /etc/nginx/templates-live/common-locations.conf;
+}

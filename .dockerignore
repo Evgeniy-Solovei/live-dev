@@ -1,0 +1,14 @@
+.git
+.venv
+**/__pycache__
+**/*.pyc
+**/.DS_Store
+backend/media
+backend/staticfiles
+backend/.env
+dev-agency-site-new/assets/showcase/_figma
+dev-agency-site-new/assets/showcase/_raw
+dev-agency-site-new/assets/showcase/_land-src
+dev-agency-site-new/node_modules
+dev-agency-site-new/assets/showcase/*.png
+**/*.md

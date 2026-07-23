@@ -1,0 +1,150 @@
+/* Live card preview in ShowcaseItem admin */
+.ld-pv {
+  max-width: 920px;
+  margin: 4px 0 8px;
+}
+.ld-pv-stage {
+  display: grid;
+  grid-template-columns: 1.35fr 0.8fr;
+  gap: 16px;
+  align-items: stretch;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(168, 255, 53, 0.08), transparent 30%),
+    radial-gradient(circle at 92% 18%, rgba(124, 92, 255, 0.14), transparent 34%),
+    #0b1222;
+  color: #f3f6ff;
+  min-height: 280px;
+}
+.ld-pv-visual {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #070b14;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  align-self: center;
+}
+.ld-pv-visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ld-pv-empty {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: #8fa0d6;
+  font-size: 13px;
+}
+.ld-pv-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.ld-pv-kicker {
+  color: #a8ff35;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+.ld-pv-copy h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: #fff !important;
+  overflow: visible;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+.ld-pv-copy p {
+  margin: 0;
+  color: #c5d0ff !important;
+  font-size: 14px;
+  line-height: 1.55;
+  overflow: visible;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+.ld-pv-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 auto;
+}
+.ld-pv-points span {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  font-weight: 700;
+  color: #f3f6ff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+.ld-pv-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #aebbea;
+  font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.ld-pv-hint {
+  margin: 10px 0 0 !important;
+  color: #8fa0d6 !important;
+  font-size: 13px !important;
+}
+
+/* Light admin theme */
+html:not(.dark) .ld-pv-stage {
+  background: #f4f7fd;
+  border-color: #d5ddea;
+  color: #12203a;
+}
+html:not(.dark) .ld-pv-copy h3 {
+  color: #0f1b33 !important;
+}
+html:not(.dark) .ld-pv-copy p {
+  color: #3a4d6e !important;
+}
+html:not(.dark) .ld-pv-points span {
+  background: #fff;
+  border-color: #d5ddea;
+  color: #12203a;
+}
+html:not(.dark) .ld-pv-bottom {
+  color: #5a6b8a;
+  border-top-color: #d5ddea;
+}
+html:not(.dark) .ld-pv-visual {
+  border-color: #d5ddea;
+}
+
+@media (max-width: 900px) {
+  .ld-pv-stage {
+    grid-template-columns: 1fr;
+  }
+  .ld-pv-points {
+    grid-template-columns: 1fr 1fr;
+  }
+}
