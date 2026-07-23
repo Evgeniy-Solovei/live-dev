@@ -13,7 +13,7 @@ from django.views.decorators.http import require_GET, require_http_methods
 from content.models import ShowcaseCategory, ShowcaseItem
 from content.seo import SERVICES, SERVICE_ORDER
 from core.models import SiteSettings
-from core.utils import cached_json
+from core.utils import cached_json, inject_yandex_metrika
 
 
 @cached_json('public_showcase', getattr(settings, 'CACHE_TTL_SHOWCASE', 300))
@@ -121,6 +121,7 @@ def service_detail(request, slug):
         f'<script type="application/ld+json">{_safe_schema(schema)}</script>'
     )
     html = html.replace('</head>', f'{page_data}</head>', 1)
+    html = inject_yandex_metrika(html)
     response = HttpResponse(html, content_type='text/html; charset=utf-8')
     response['Cache-Control'] = 'public, max-age=300'
     return response

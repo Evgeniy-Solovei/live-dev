@@ -37,8 +37,10 @@
   };
 
   const injectYandexMetrika = (id, webvisor) => {
-    if (!id || window.ym) return;
-    window.LIVEDEV_METRIKA_ID = id;
+    if (!id) return;
+    window.LIVEDEV_METRIKA_ID = String(id).trim();
+    if (window.__ldMetrikaInited) return;
+    window.__ldMetrikaInited = true;
     (function (m, e, t, r, i) {
       m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
       m[i].l = +new Date();
@@ -47,21 +49,36 @@
       k.async = 1;
       k.src = r;
       a.parentNode.insertBefore(k, a);
-    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=' + encodeURIComponent(id), 'ym');
     window.ym(Number(id) || id, 'init', {
       clickmap: true,
       trackLinks: true,
       accurateTrackBounce: true,
       webvisor: !!webvisor,
+      ssr: true,
     });
   };
 
   const reachGoal = (goalName, params) => {
-    const id = window.LIVEDEV_METRIKA_ID;
-    if (!id || typeof window.ym !== 'function' || !goalName) return;
-    try {
-      window.ym(Number(id) || id, 'reachGoal', goalName, params || undefined);
-    } catch (e) { /* ignore */ }
+    const id = window.LIVEDEV_METRIKA_ID
+      || (window.LIVEDEV_SETTINGS && window.LIVEDEV_SETTINGS.yandex_metrika_id);
+    if (!id || !goalName) return;
+    const fire = () => {
+      if (typeof window.ym !== 'function') return false;
+      try {
+        window.ym(Number(id) || id, 'reachGoal', goalName, params || undefined);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    };
+    if (fire()) return;
+    // Метрика ещё грузится — повторим пару раз
+    let n = 0;
+    const t = setInterval(() => {
+      n += 1;
+      if (fire() || n >= 10) clearInterval(t);
+    }, 300);
   };
 
   const configuredGoogleIds = new Set();

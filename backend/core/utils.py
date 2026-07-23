@@ -35,6 +35,56 @@ def client_ip(request) -> str | None:
     return request.META.get('REMOTE_ADDR')
 
 
+def yandex_metrika_head_html(counter_id: str | None = None, webvisor: bool | None = None) -> str:
+    """
+    Счётчик в HTML (не только через JS после /api/settings/).
+    Нужен Яндекс.Директу: он ищет tag.js / номер счётчика в исходнике страницы.
+    """
+    if counter_id is None or webvisor is None:
+        from core.models import SiteSettings
+
+        s = SiteSettings.load()
+        if counter_id is None:
+            counter_id = s.yandex_metrika_id or ''
+        if webvisor is None:
+            webvisor = s.yandex_metrika_webvisor
+    cid = str(counter_id or '').strip()
+    if not cid.isdigit():
+        return ''
+    wv = 'true' if webvisor else 'false'
+    # В исходнике страницы — иначе Директ пишет «на сайте нет счётчиков»
+    return (
+        f'<!-- Yandex.Metrika counter -->\n'
+        f'<script type="text/javascript">\n'
+        f'window.LIVEDEV_METRIKA_ID={cid!r};\n'
+        f'window.__ldMetrikaInited=true;\n'
+        f'(function(m,e,t,r,i){{\n'
+        f'm[i]=m[i]||function(){{(m[i].a=m[i].a||[]).push(arguments)}};\n'
+        f'm[i].l=1*new Date();\n'
+        f'for(var j=0;j<document.scripts.length;j++){{if(document.scripts[j].src===r){{return}}}}\n'
+        f'k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)\n'
+        f'}})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id={cid}","ym");\n'
+        f'ym({cid},"init",{{ssr:true,webvisor:{wv},clickmap:true,ecommerce:"dataLayer",'
+        f'accurateTrackBounce:true,trackLinks:true}});\n'
+        f'</script>\n'
+        f'<noscript><div><img src="https://mc.yandex.ru/watch/{cid}" '
+        f'style="position:absolute;left:-9999px" alt="" /></div></noscript>\n'
+        f'<!-- /Yandex.Metrika counter -->\n'
+    )
+
+
+def inject_yandex_metrika(html: str) -> str:
+    """Вставить счётчик перед </head>, если ещё нет."""
+    if 'mc.yandex.ru/metrika' in html or 'Yandex.Metrika counter' in html:
+        return html
+    snippet = yandex_metrika_head_html()
+    if not snippet:
+        return html
+    if '</head>' in html:
+        return html.replace('</head>', snippet + '</head>', 1)
+    return snippet + html
+
+
 def _is_private_ip(ip: str) -> bool:
     try:
         from ipaddress import ip_address

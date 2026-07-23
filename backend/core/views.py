@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 
 from core.models import SiteSettings
-from core.utils import cached_json, client_ip, lookup_geo
+from core.utils import cached_json, client_ip, lookup_geo, inject_yandex_metrika
 from django.conf import settings as django_settings
 
 
@@ -19,7 +19,8 @@ def home(request):
     index = Path(settings.FRONTEND_DIR) / 'index.html'
     if not index.is_file():
         raise Http404('Frontend index.html not found')
-    return FileResponse(index.open('rb'), content_type='text/html; charset=utf-8')
+    html = inject_yandex_metrika(index.read_text(encoding='utf-8'))
+    return HttpResponse(html, content_type='text/html; charset=utf-8')
 
 
 @require_GET
@@ -46,7 +47,8 @@ def privacy(request):
     path = Path(settings.FRONTEND_DIR) / 'privacy.html'
     if not path.is_file():
         raise Http404('Privacy page not found')
-    return FileResponse(path.open('rb'), content_type='text/html; charset=utf-8')
+    html = inject_yandex_metrika(path.read_text(encoding='utf-8'))
+    return HttpResponse(html, content_type='text/html; charset=utf-8')
 
 
 @require_GET

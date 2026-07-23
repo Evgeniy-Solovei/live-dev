@@ -275,7 +275,7 @@ const visualNode = (category, item) => {
   let src = item?.image || category?.image;
   if (src?.startsWith('assets/')) src = `/${src}`;
   if (src) {
-    const bust = src.includes('?') ? src : `${src}?v=20260723t`;
+    const bust = src.includes('?') ? src : `${src}?v=20260723u`;
     const img = document.createElement('img');
     img.className = 'showcase-shot';
     img.src = bust;
