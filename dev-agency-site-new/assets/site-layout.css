@@ -149,13 +149,11 @@ h1 { max-width: none; }
   }
 
   .site-header.is-open .header-end .header-actions {
-    margin-top: 12px;
+    display: none;
   }
 
   .site-header.is-open .header-end .header-cta {
-    display: flex;
-    width: 100%;
-    justify-content: center;
+    display: none;
   }
 }
 
@@ -176,6 +174,8 @@ h1 { max-width: none; }
   min-width: 0;
   max-width: 100%;
   width: 100%;
+  position: relative;
+  z-index: 5;
 }
 
 .hero-grid-selling .hero-lead {
@@ -200,6 +200,15 @@ h1 { max-width: none; }
 
 .hero-grid-selling .hero-actions {
   margin: 24px 0 18px;
+  position: relative;
+  z-index: 6;
+  pointer-events: auto;
+}
+
+.hero-grid-selling .hero-actions .btn {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
 }
 
 .hero-proof-selling {

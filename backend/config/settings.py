@@ -137,6 +137,18 @@ CSRF_TRUSTED_ORIGINS = [
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', '')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '')
 
+# Email notifications for new leads. Mail.ru uses SMTP over SSL on port 465.
+EMAIL_NOTIFICATIONS_ENABLED = os.getenv('EMAIL_NOTIFICATIONS_ENABLED', '0') == '1'
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.mail.ru')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', '465'))
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', '1') == '1'
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', '0') == '1'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER or 'live-dev@mail.ru')
+EMAIL_TIMEOUT = int(os.getenv('EMAIL_TIMEOUT', '10'))
+
 CACHE_TTL_SHOWCASE = int(os.getenv('CACHE_TTL_SHOWCASE', '300'))
 CACHE_TTL_SETTINGS = int(os.getenv('CACHE_TTL_SETTINGS', '120'))
 CACHE_TTL_GEO = int(os.getenv('CACHE_TTL_GEO', '86400'))

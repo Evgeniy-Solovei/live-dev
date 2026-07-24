@@ -360,6 +360,7 @@
           <label>О задаче<textarea name="message" placeholder="Кратко опишите, что нужно сделать"></textarea></label>
           <label class="form-consent"><input type="checkbox" required /> <span>Согласен на обработку персональных данных согласно <a href="/privacy/" target="_blank">политике конфиденциальности</a>.</span></label>
           <button type="submit" class="btn btn-secondary">Получить оценку проекта</button>
+          <p class="form-feedback" id="leadFormFeedback" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -461,6 +462,17 @@
   <script src="/assets/site-api.js?v=20260723u"></script>
   <script src="/assets/script.js?v=20260723u"></script>
   <script src="/assets/theme-switcher.js?v=20260723u"></script>
+  <div class="lead-success" id="leadSuccess" role="dialog" aria-modal="true" aria-labelledby="leadSuccessTitle" hidden>
+    <div class="lead-success-backdrop" data-lead-success-close></div>
+    <div class="lead-success-card">
+      <button class="lead-success-close" type="button" aria-label="Закрыть" data-lead-success-close>×</button>
+      <div class="lead-success-icon" aria-hidden="true">✓</div>
+      <p class="lead-success-kicker">Заявка принята</p>
+      <h2 id="leadSuccessTitle">Спасибо! Мы получили вашу заявку</h2>
+      <p>Свяжемся с вами по указанному контакту, чтобы уточнить задачу и предложить следующий шаг.</p>
+      <button class="btn btn-secondary lead-success-action" type="button" data-lead-success-close>Хорошо</button>
+    </div>
+  </div>
   <div class="copy-toast" id="copyToast" role="status" aria-live="polite">Скопировано</div>
 </body>
 </html>

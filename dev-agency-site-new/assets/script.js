@@ -408,8 +408,48 @@ window.addEventListener('resize', () => {
 });
 
 const leadForm = document.getElementById('leadForm');
+const leadFormFeedback = document.getElementById('leadFormFeedback');
+const leadSuccess = document.getElementById('leadSuccess');
+const leadSuccessAction = leadSuccess?.querySelector('.lead-success-action');
+let leadSuccessPreviousFocus = null;
+
+const setLeadFeedback = (message = '', type = '') => {
+  if (!leadFormFeedback) return;
+  leadFormFeedback.textContent = message;
+  leadFormFeedback.classList.toggle('is-error', type === 'error');
+};
+
+const openLeadSuccess = () => {
+  if (!leadSuccess) return;
+  leadSuccessPreviousFocus = document.activeElement;
+  leadSuccess.hidden = false;
+  document.body.classList.add('lead-success-open');
+  requestAnimationFrame(() => {
+    leadSuccess.classList.add('is-visible');
+    leadSuccessAction?.focus();
+  });
+};
+
+const closeLeadSuccess = () => {
+  if (!leadSuccess || leadSuccess.hidden) return;
+  leadSuccess.classList.remove('is-visible');
+  document.body.classList.remove('lead-success-open');
+  window.setTimeout(() => {
+    leadSuccess.hidden = true;
+    leadSuccessPreviousFocus?.focus?.();
+  }, 220);
+};
+
+leadSuccess?.querySelectorAll('[data-lead-success-close]').forEach((control) => {
+  control.addEventListener('click', closeLeadSuccess);
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !leadSuccess?.hidden) closeLeadSuccess();
+});
+
 leadForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
+  setLeadFeedback();
   const fd = new FormData(leadForm);
   const payload = {
     name: String(fd.get('name') || '').trim(),
@@ -428,9 +468,9 @@ leadForm?.addEventListener('submit', async (event) => {
     window.LiveDevAPI.reachGoal?.(window.LIVEDEV_SETTINGS?.lead_goal_name || 'lead_submit');
     window.LiveDevAPI.reportLeadConversion?.();
     leadForm.reset();
-    alert('Заявка отправлена. Мы свяжемся с вами.');
+    openLeadSuccess();
   } catch (e) {
-    alert('Не удалось отправить через сайт. Напишите в Telegram @solovey_ev или на live-dev@mail.ru');
+    setLeadFeedback('Не удалось отправить заявку. Напишите в Telegram @solovey_ev или на live-dev@mail.ru.', 'error');
   } finally {
     if (btn) { btn.disabled = false; btn.textContent = prev || 'Получить оценку проекта'; }
   }
