@@ -26,8 +26,8 @@ services:
       POSTGRES_HOST: db
       DEBUG: "0"
       FRONTEND_DIR: /app/frontend
-      ALLOWED_HOSTS: live-dev.by,localhost,127.0.0.1,app
-      CSRF_TRUSTED_ORIGINS: https://live-dev.by
+      ALLOWED_HOSTS: live-dev.by,www.live-dev.by,localhost,127.0.0.1,app
+      CSRF_TRUSTED_ORIGINS: https://live-dev.by,https://www.live-dev.by
       BEHIND_HTTPS_PROXY: "1"
     volumes:
       - media_data:/app/media

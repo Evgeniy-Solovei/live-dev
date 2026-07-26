@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 128" role="img" aria-labelledby="title">
+  <title id="title">LiveDev</title>
+  <defs>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#7c5cff"/>
+      <stop offset="1" stop-color="#27d9ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="34" fill="#070b16"/>
+  <path d="M34 34C18 48 18 80 34 94M94 34c16 14 16 46 0 60M48 64h14l8-18 12 36 9-18h13" fill="none" stroke="url(#mark)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="150" y="84" fill="#111936" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="700">LiveDev</text>
+</svg>

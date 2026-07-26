@@ -218,6 +218,8 @@ const showcaseText = document.getElementById('showcaseText');
 const showcasePoints = document.getElementById('showcasePoints');
 const showcaseCounter = document.getElementById('showcaseCounter');
 const showcaseContent = showcase?.querySelector('.showcase-content');
+const serviceProjectsHeading = document.getElementById('serviceProjectsHeading');
+const serviceProjectsIntro = document.getElementById('serviceProjectsIntro');
 let activeCategory = window.LIVEDEV_INITIAL_CATEGORY || 'crm';
 let activeExample = 0;
 let showcaseTimer = null;
@@ -251,6 +253,45 @@ const categoryServiceUrls = {
 const categoryByServicePath = Object.fromEntries(
   Object.entries(categoryServiceUrls).map(([category, path]) => [path, category]),
 );
+
+const categoryServiceCopy = {
+  crm: {
+    heading: 'Разработка CRM-систем для бизнеса',
+    intro: 'Разрабатываем CRM-системы, личные кабинеты и внутренние сервисы под процессы компании. Автоматизируем заявки, задачи, документы, оплаты и отчётность.',
+  },
+  telegram: {
+    heading: 'Разработка Telegram Mini Apps под ключ',
+    intro: 'Разрабатываем Telegram Mini Apps для каталогов, личных кабинетов, программ лояльности, оплат и автоматизации бизнеса. Подключаем API, CRM и платёжные системы.',
+  },
+  bots: {
+    heading: 'Разработка Telegram-ботов для бизнеса',
+    intro: 'Создаём ботов для приёма заявок, записи, поддержки, продаж и уведомлений. Интегрируем их с CRM, сайтом, базой данных и внешними сервисами.',
+  },
+  landings: {
+    heading: 'Разработка лендингов под ключ',
+    intro: 'Создаём посадочные страницы под услуги, продукты и рекламные кампании. Продумываем структуру, адаптив, формы заявок, аналитику и техническое SEO.',
+  },
+  shop: {
+    heading: 'Разработка сайтов и веб-сервисов под ключ',
+    intro: 'Создаём лендинги, корпоративные сайты, личные кабинеты и веб-сервисы для бизнеса. Подключаем CRM, оплату, аналитику и внешние API.',
+  },
+  ai: {
+    heading: 'AI-автоматизация и AI-агенты',
+    intro: 'Внедряем AI-агентов, поиск по базе знаний и автоматическую обработку обращений и документов. Интегрируем решения с CRM, мессенджерами и рабочими процессами.',
+  },
+  vpn: {
+    heading: 'Поддержка проектов, VPN и инфраструктуры',
+    intro: 'Поддерживаем сайты, CRM, backend и серверную инфраструктуру после запуска. Настраиваем мониторинг, резервные копии, VPN и безопасное развёртывание.',
+  },
+};
+
+const renderServiceCopy = () => {
+  const pathCopy = window.LIVEDEV_SERVICE_COPY_BY_PATH?.[window.location.pathname];
+  const copy = pathCopy || categoryServiceCopy[activeCategory];
+  if (!copy) return;
+  if (serviceProjectsHeading) serviceProjectsHeading.textContent = copy.heading;
+  if (serviceProjectsIntro) serviceProjectsIntro.textContent = copy.intro;
+};
 
 /** Rebuild category links from CMS data (order = API order). */
 const syncProductTabs = () => {
@@ -295,6 +336,7 @@ const renderShowcase = (instant = false) => {
   const category = productExamples[activeCategory];
   const item = category.items[activeExample];
   const apply = () => {
+    renderServiceCopy();
     if (showcaseVisual) showcaseVisual.replaceChildren(visualNode(category, item));
     if (showcaseCategory) showcaseCategory.textContent = category.label;
     if (showcaseTitle) showcaseTitle.textContent = item.title;

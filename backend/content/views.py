@@ -1,5 +1,7 @@
 import json
 import json as json_module
+import re
+from html import escape as html_escape
 from pathlib import Path
 
 from django.conf import settings
@@ -106,18 +108,85 @@ def service_detail(request, slug):
         },
     }
     html = index.read_text(encoding='utf-8')
-    replacements = {
-        '<title>Разработка сайтов, CRM и Telegram в Витебске — LiveDev</title>': f'<title>{service["title"]}</title>',
-        '<meta name="description" content="Разрабатываем сайты, CRM, Telegram Mini Apps, ботов и AI-решения под ключ в Витебске и удалённо по Беларуси. Аналитика, интеграции и запуск." />': f'<meta name="description" content="{service["description"]}" />',
-        '<meta property="og:title" content="Разработка сайтов и программного обеспечения — LiveDev" />': f'<meta property="og:title" content="{service["title"]}" />',
-        '<meta property="og:description" content="Сайты, CRM, Telegram Mini Apps, боты и AI-автоматизация для бизнеса. Бесплатный разбор задачи за 20–30 минут." />': f'<meta property="og:description" content="{service["description"]}" />',
-        '<meta property="og:url" content="https://live-dev.by/" />': f'<meta property="og:url" content="{canonical}" />',
-        '<link rel="canonical" href="https://live-dev.by/" />': f'<link rel="canonical" href="{canonical}" />',
+    title = html_escape(service['title'], quote=True)
+    description = html_escape(service['description'], quote=True)
+    project_heading = html_escape(service['project_heading'], quote=True)
+    project_intro = html_escape(service['project_intro'], quote=True)
+
+    head_replacements = (
+        (r'<title>.*?</title>', f'<title>{title}</title>'),
+        (r'<meta name="description" content="[^"]*"\s*/>', f'<meta name="description" content="{description}" />'),
+        (r'<meta property="og:title" content="[^"]*"\s*/>', f'<meta property="og:title" content="{title}" />'),
+        (r'<meta property="og:description" content="[^"]*"\s*/>', f'<meta property="og:description" content="{description}" />'),
+        (r'<meta property="og:url" content="[^"]*"\s*/>', f'<meta property="og:url" content="{canonical}" />'),
+        (r'<link rel="canonical" href="[^"]*"\s*/>', f'<link rel="canonical" href="{canonical}" />'),
+    )
+    for pattern, replacement in head_replacements:
+        html = re.sub(pattern, replacement, html, count=1, flags=re.DOTALL)
+
+    html = re.sub(
+        r'<h2 id="serviceProjectsHeading">.*?</h2>',
+        f'<h2 id="serviceProjectsHeading">{project_heading}</h2>',
+        html,
+        count=1,
+        flags=re.DOTALL,
+    )
+    html = re.sub(
+        r'<p id="serviceProjectsIntro">.*?</p>',
+        f'<p id="serviceProjectsIntro">{project_intro}</p>',
+        html,
+        count=1,
+        flags=re.DOTALL,
+    )
+
+    def select_initial_tab(match):
+        tab_category = match.group(2)
+        active = ' is-active' if tab_category == category else ''
+        return f'<a class="product-tab{active}"{match.group(1)}>'
+
+    html = re.sub(
+        r'<a class="product-tab(?: is-active)?"([^>]*data-product-category="([^"]+)"[^>]*)>',
+        select_initial_tab,
+        html,
+    )
+
+    selected_category = ShowcaseCategory.objects.filter(slug=category, is_active=True).first()
+    first_item = None
+    if selected_category:
+        first_item = selected_category.items.filter(is_active=True).order_by('sort_order', 'id').first()
+        html = re.sub(
+            r'<p class="showcase-category" id="showcaseCategory">.*?</p>',
+            f'<p class="showcase-category" id="showcaseCategory">{html_escape(selected_category.label)}</p>',
+            html,
+            count=1,
+            flags=re.DOTALL,
+        )
+    if first_item:
+        html = re.sub(
+            r'<h3 id="showcaseTitle">.*?</h3>',
+            f'<h3 id="showcaseTitle">{html_escape(first_item.title)}</h3>',
+            html,
+            count=1,
+            flags=re.DOTALL,
+        )
+        html = re.sub(
+            r'<p id="showcaseText">.*?</p>',
+            f'<p id="showcaseText">{html_escape(first_item.text)}</p>',
+            html,
+            count=1,
+            flags=re.DOTALL,
+        )
+
+    service_copy_by_path = {
+        reverse('service_detail', args=[service_slug]): {
+            'heading': data['project_heading'],
+            'intro': data['project_intro'],
+        }
+        for service_slug, data in SERVICES.items()
     }
-    for source, target in replacements.items():
-        html = html.replace(source, target, 1)
     page_data = (
         f'<script>window.LIVEDEV_INITIAL_CATEGORY={json_module.dumps(category)};</script>'
+        f'<script>window.LIVEDEV_SERVICE_COPY_BY_PATH={_safe_schema(service_copy_by_path)};</script>'
         f'<script type="application/ld+json">{_safe_schema(schema)}</script>'
     )
     html = html.replace('</head>', f'{page_data}</head>', 1)

@@ -57,7 +57,6 @@ def sitemap(request):
 
     urls = [
         ('https://live-dev.by/', None, '1.0'),
-        ('https://live-dev.by/privacy/', None, '0.2'),
     ]
     urls.extend(
         (f'https://live-dev.by{reverse("service_detail", args=[slug])}', None, '0.9')
