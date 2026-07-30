@@ -555,3 +555,13 @@ document.addEventListener('click', (event) => {
   event.preventDefault();
   copyValue(target.getAttribute('data-copy-value'));
 });
+document.addEventListener('copy', (event) => {
+  const selection = window.getSelection()?.toString() || '';
+  if (selection && selection.includes('mailto:')) {
+    const cleaned = selection.replace(/mailto:/gi, '').trim();
+    if (cleaned && event.clipboardData) {
+      event.clipboardData.setData('text/plain', cleaned);
+      event.preventDefault();
+    }
+  }
+});
