@@ -543,9 +543,18 @@ const fallbackCopy = (value) => {
   return ok;
 };
 const copyValue = async (value) => {
-  let copied = fallbackCopy(value);
-  if (!copied && navigator.clipboard?.writeText) {
-    try { await navigator.clipboard.writeText(value); copied = true; } catch (e) {}
+  if (!value) return;
+  let copied = false;
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(value);
+      copied = true;
+    } catch (e) {
+      copied = false;
+    }
+  }
+  if (!copied) {
+    copied = fallbackCopy(value);
   }
   showCopyToast(copied ? 'Скопировано' : 'Не скопировалось');
 };
@@ -554,6 +563,14 @@ document.addEventListener('click', (event) => {
   if (!target) return;
   event.preventDefault();
   copyValue(target.getAttribute('data-copy-value'));
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    const target = event.target.closest('[data-copy-value]');
+    if (!target) return;
+    event.preventDefault();
+    copyValue(target.getAttribute('data-copy-value'));
+  }
 });
 document.addEventListener('copy', (event) => {
   const selection = window.getSelection()?.toString() || '';

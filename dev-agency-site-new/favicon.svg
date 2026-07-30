@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="ring" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#25D9FF"/>
+      <stop offset="50%" stop-color="#2C7BFF"/>
+      <stop offset="100%" stop-color="#8A45FF"/>
+    </linearGradient>
+    <linearGradient id="blue-l" x1="0" y1="140" x2="0" y2="310" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#25D9FF"/>
+      <stop offset="100%" stop-color="#2C7BFF"/>
+    </linearGradient>
+    <linearGradient id="white-d" x1="0" y1="140" x2="0" y2="310" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D0D7DE"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="250" fill="#060913" />
+
+  <!-- Outer Ring -->
+  <circle cx="256" cy="256" r="243" fill="none" stroke="url(#ring)" stroke-width="7" />
+
+  <!-- L Shape -->
+  <polygon points="138,142 210,142 160,260 268,260 250,302 98,302" fill="url(#blue-l)" />
+
+  <!-- D Shape -->
+  <path d="M222,142 L320,142 C360,145 392,185 406,222 C400,260 372,288 328,302 L242,302 L258,260 L315,260 C342,250 358,230 352,205 C330,188 292,184 240,184 Z" fill="url(#white-d)" />
+
+  <!-- Text LIVE-DEV -->
+  <text x="256" y="380" text-anchor="middle" font-family="Arial, 'Helvetica Neue', sans-serif" font-weight="900" font-size="46" letter-spacing="2">
+    <tspan fill="#FFFFFF">LIVE</tspan><tspan fill="#2C7BFF">-DEV</tspan>
+  </text>
+
+  <!-- Subtitle WEB SOLUTIONS -->
+  <text x="256" y="425" text-anchor="middle" fill="#CBD5E1" font-family="Arial, sans-serif" font-weight="600" font-size="20" letter-spacing="5">
+    — WEB SOLUTIONS —
+  </text>
+</svg>
